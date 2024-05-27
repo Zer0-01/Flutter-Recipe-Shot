@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCWDzA-202Nh9-pzzWnkWviY8jULOCrDdY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>73616857507</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.flutterRecipeShot</string>
+	<key>PROJECT_ID</key>
+	<string>flutter-recipe-shot-20af9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutter-recipe-shot-20af9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:73616857507:ios:fb7766dbbe5c6400eb6216</string>
+</dict>
+</plist>
