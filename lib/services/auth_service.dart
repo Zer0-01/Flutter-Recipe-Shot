@@ -22,4 +22,9 @@ class AuthService {
       return null;
     }
   }
+
+  // auth change user stream
+  Stream<UserModel?> get onAuthStateChanged {
+    return _auth.authStateChanges().map(_userModelFromFirebase);
+  }
 }
