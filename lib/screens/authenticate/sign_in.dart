@@ -11,7 +11,10 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _authService = AuthService();
+  final _formKey = GlobalKey<FormState>();
   String error = '';
+  String email = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,17 +28,53 @@ class _SignInState extends State<SignIn> {
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: primary
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20.0,
+              ),
+              TextFormField(
+                validator: (value) => value!.isEmpty ? 'Enter an email' : null,
+                onChanged: (value) {
+                  setState(() {
+                    email = value;
+                  });
+                },
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              TextFormField(
+                validator: (value) => value!.length < 6
+                    ? "Enter a password 6+ characters long"
+                    : null,
+                obscureText: true,
+                onChanged: (value) {
+                  setState(() {
+                    password = value;
+                  });
+                },
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    dynamic result = await _authService.signIn(email, password);
+                    if (result == null) {
+                      setState(() {
+                        error = 'Could not sign in with the credentials';
+                      });
+                    }
+                  }
+                },
+                child: Text('Sign In'),
+              ),
+            ],
           ),
-          child: const Text(
-            'Sign In',
-            style: TextStyle(color: text),
-          ),
-          onPressed: () async {
-            dynamic result = await _authService.signInAnonymously();
-          },
         ),
       ),
     );
