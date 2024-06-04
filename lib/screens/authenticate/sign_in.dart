@@ -3,7 +3,8 @@ import 'package:flutter_recipe_shot/constants/constants.dart';
 import 'package:flutter_recipe_shot/services/auth_service.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+  final Function toggleView;
+  const SignIn({super.key, required this.toggleView});
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -25,6 +26,15 @@ class _SignInState extends State<SignIn> {
           'Sign In to Recipe Shot',
           style: TextStyle(color: text),
         ),
+        actions: [
+          TextButton.icon(
+            onPressed: () {
+              widget.toggleView();
+            },
+            label: Text('Sign Up'),
+            icon: Icon(Icons.person),
+          )
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
