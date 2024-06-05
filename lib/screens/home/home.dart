@@ -7,7 +7,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthService _authService = AuthService();
+    final AuthService authService = AuthService();
     return Scaffold(
       backgroundColor: secondary,
       appBar: AppBar(
@@ -20,12 +20,12 @@ class Home extends StatelessWidget {
         actions: [
           TextButton.icon(
             onPressed: () async {
-              await _authService.signOut();
+              await authService.signOut();
             },
-            label: Text(
+            label: const Text(
               'Sign Out',
             ),
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             style: TextButton.styleFrom(foregroundColor: text),
           ),
         ],
