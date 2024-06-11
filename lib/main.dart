@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/firebase_options.dart';
+import 'package:flutter_recipe_shot/my_app.dart';
 import 'package:flutter_recipe_shot/providers/auth_provider.dart';
+import 'package:flutter_recipe_shot/services/firestore_database.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -16,10 +18,10 @@ void main() async {
           create: (context) => AuthProvider(),
         ),
       ],
-      // child: MyApp(
-      //   databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),
-      //   key: Key('MyApp'),
-      // ),
+      child: MyApp(
+        databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),
+        key: const Key('MyApp'),
+      ),
     ),
   );
 }
