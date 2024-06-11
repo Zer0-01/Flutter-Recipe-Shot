@@ -1,5 +1,14 @@
 class UserModel {
-  final String uid;
+  String uid;
+  String? email;
+  String? displayName;
+  String? phoneNumber;
+  String? photoUrl;
 
-  UserModel({required this.uid});
+  UserModel(
+      {required this.uid,
+      this.email,
+      this.displayName,
+      this.phoneNumber,
+      this.photoUrl});
 }

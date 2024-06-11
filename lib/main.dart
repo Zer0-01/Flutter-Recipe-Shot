@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/firebase_options.dart';
-import 'package:flutter_recipe_shot/models/UserModel.dart';
-import 'package:flutter_recipe_shot/services/auth_service.dart';
-import 'package:flutter_recipe_shot/wrapper.dart';
+import 'package:flutter_recipe_shot/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -11,24 +9,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return StreamProvider<UserModel?>.value(
-      initialData: null,
-      value: AuthService().onAuthStateChanged,
-      builder: (context, snapshot) {
-        return const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Wrapper(),
-        );
-      }
-    );
-  }
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>(
+          create: (context) => AuthProvider(),
+        ),
+      ],
+      // child: MyApp(
+      //   databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),
+      //   key: Key('MyApp'),
+      // ),
+    ),
+  );
 }
