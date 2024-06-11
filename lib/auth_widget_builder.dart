@@ -8,7 +8,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/models/UserModel.dart';
+import 'package:flutter_recipe_shot/models/user_model.dart';
 import 'package:flutter_recipe_shot/providers/auth_provider.dart';
 import 'package:flutter_recipe_shot/services/firestore_database.dart';
 import 'package:provider/provider.dart';

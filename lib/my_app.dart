@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/auth_widget_builder.dart';
-import 'package:flutter_recipe_shot/models/UserModel.dart';
+import 'package:flutter_recipe_shot/models/user_model.dart';
 import 'package:flutter_recipe_shot/providers/auth_provider.dart';
 import 'package:flutter_recipe_shot/routes.dart';
 import 'package:flutter_recipe_shot/services/firestore_database.dart';
