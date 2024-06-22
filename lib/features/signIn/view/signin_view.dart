@@ -98,7 +98,7 @@ class _SigninViewState extends State<SigninView> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignupView(),
+                        builder: (context) => const SignupView(),
                       ));
                 },
               ),

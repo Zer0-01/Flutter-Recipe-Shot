@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
 
-
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -20,6 +19,10 @@ class _SplashViewState extends State<SplashView> {
         if (!snapshot.hasData) {
           return const SigninView();
         }
+        final user = FirebaseAuth.instance.currentUser;
+
+        print(user?.displayName);
+        print(user?.email);
         return const HomeView();
       },
     );
