@@ -71,9 +71,7 @@ class _SignupViewState extends State<SignupView> {
                           ? null
                           : () async {
                               if (_formKey.currentState!.validate()) {
-                                await vm.signUpUserWithEmailAndPassword();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Success')));
+                                vm.signUp(context);
                               }
                             },
                     )

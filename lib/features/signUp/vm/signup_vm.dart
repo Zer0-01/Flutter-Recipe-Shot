@@ -1,35 +1,40 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SignupVm extends ChangeNotifier {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
-  bool status = false;
 
-  Future<void> signUpUserWithEmailAndPassword() async {
+  Future<void> signUp(BuildContext context) async {
     isLoading = true;
     notifyListeners();
-    try {
-      print('hello');
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text, password: emailController.text);
 
-      print('success');
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim());
+
+      if (userCredential.user != null) {
+        await _auth.signOut();
+        showSnackbar(context, 'Register Successful');
+
+        Navigator.pushReplacementNamed(context, '/signin');
       }
     } catch (e) {
-      print(e);
+      print('Error: ${e.toString()}');
+      showSnackbar(context, e.toString());
     }
 
     isLoading = false;
     notifyListeners();
+  }
+
+  void showSnackbar(BuildContext context, String message) {
+    final snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

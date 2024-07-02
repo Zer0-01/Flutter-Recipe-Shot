@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
-import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
+import 'package:flutter_recipe_shot/features/splash/vm/splash_vm.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -11,20 +9,20 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  SplashVm vm = SplashVm();
+
+  @override
+  void initState() {
+    super.initState();
+    vm.checkSignInStatus(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return const SigninView();
-        }
-        final user = FirebaseAuth.instance.currentUser;
-
-        print(user?.displayName);
-        print(user?.email);
-        return const HomeView();
-      },
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }
