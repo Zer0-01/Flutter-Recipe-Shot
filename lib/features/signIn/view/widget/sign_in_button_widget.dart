@@ -8,14 +8,14 @@ class SignInButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Text('Sign In'),
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: AppColors.primaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16))),
       ),
+      child: const Text('Sign In'),
     );
   }
 }
