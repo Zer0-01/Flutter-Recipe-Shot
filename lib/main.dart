@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
+import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
+import 'package:flutter_recipe_shot/features/signUp/view/signup_view.dart';
 import 'package:flutter_recipe_shot/features/splash/view/splash_view.dart';
 import 'package:flutter_recipe_shot/firebase_options.dart';
 
@@ -8,19 +11,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-      // MultiProvider(
-      //   providers: [
-      //     ChangeNotifierProvider<AuthProvider>(
-      //       create: (context) => AuthProvider(),
-      //     ),
-      //   ],
-      //   child: MyApp(
-      //     databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),
-      //     key: const Key('MyApp'),
-      //   ),
-      // ),
-      const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,9 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashView(),
+        '/signin': (context) => const SigninView(),
+        '/signup': (context) => const SignupView(),
+        '/home': (context) => const HomeView(),
+      },
       title: 'Recipe Shot',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const SplashView(),
     );
   }
 }

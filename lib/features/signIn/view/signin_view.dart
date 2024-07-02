@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/constants/constants.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/widget/sign_in_button_widget.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/widget/sign_up_navigator_widget.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/widget/text_form_field_widget.dart';
-import 'package:flutter_recipe_shot/features/signIn/viewModel/sign_in_view_model.dart';
+import 'package:flutter_recipe_shot/features/signIn/vm/signin_vm.dart';
 import 'package:flutter_recipe_shot/features/signUp/view/signup_view.dart';
-import 'package:flutter_recipe_shot/services/auth_service.dart';
+import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
 class SigninView extends StatefulWidget {
   const SigninView({super.key});
@@ -15,32 +14,13 @@ class SigninView extends StatefulWidget {
 }
 
 class _SigninViewState extends State<SigninView> {
-  final SignInViewModel vm = SignInViewModel();
-  final AuthService _authService = AuthService();
+  final SigninVm vm = SigninVm();
   final _formKey = GlobalKey<FormState>();
-  String error = '';
-  String email = '';
-  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: secondary,
-      // appBar: AppBar(
-      //   backgroundColor: primary,
-      //   title: Text(
-      //     'Sign In to Recipe Shot',
-      //     style: TextStyle(color: text),
-      //   ),
-      //   actions: [
-      //     TextButton.icon(
-      //       onPressed: () {
-      //         widget.toggleView();
-      //       },
-      //       label: Text('Sign Up'),
-      //       icon: Icon(Icons.person),
-      //     )
-      //   ],
-      // ),
+      backgroundColor: AppColors.secondaryColor,
       body: Form(
         key: _formKey,
         child: Padding(
@@ -79,15 +59,7 @@ class _SigninViewState extends State<SigninView> {
                   Expanded(
                     child: SignInButtonWidget(
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          dynamic result =
-                              await _authService.signIn(email, password);
-                          if (result == null) {
-                            setState(() {
-                              error = 'Could not sign in with the credentials';
-                            });
-                          }
-                        }
+                        vm.signIn(context);
                       },
                     ),
                   ),
