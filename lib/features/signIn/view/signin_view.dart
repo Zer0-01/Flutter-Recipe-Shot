@@ -58,8 +58,10 @@ class _SigninViewState extends State<SigninView> {
                 children: [
                   Expanded(
                     child: SignInButtonWidget(
-                      onPressed: () async {
-                        vm.signIn(context);
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          vm.signIn(context);
+                        }
                       },
                     ),
                   ),
