@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/splash/vm/splash_vm.dart';
 
 class SplashView extends StatefulWidget {
+  static const String id = 'splash_view';
   const SplashView({super.key});
 
   @override

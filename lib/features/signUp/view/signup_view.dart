@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/features/signUp/view/widget/sign_up_button_widget.dart';
-import 'package:flutter_recipe_shot/features/signUp/view/widget/text_form_field_widget.dart';
-import 'package:flutter_recipe_shot/features/signUp/vm/signup_vm.dart';
+import 'package:flutter_recipe_shot/features/signup/view/widget/sign_up_button_widget.dart';
+import 'package:flutter_recipe_shot/features/signup/view/widget/text_form_field_widget.dart';
+import 'package:flutter_recipe_shot/features/signup/vm/signup_vm.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:flutter_recipe_shot/res/widgets/sized_box_widget.dart';
 import 'package:flutter_recipe_shot/res/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 
 class SignupView extends StatefulWidget {
+  static const String id = 'signup_view';
   const SignupView({super.key});
 
   @override

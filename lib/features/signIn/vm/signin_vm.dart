@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
 import 'package:flutter_recipe_shot/res/widgets/loading_dialog_widget.dart';
 
 class SigninVm extends ChangeNotifier {
@@ -18,7 +19,7 @@ class SigninVm extends ChangeNotifier {
       dismissLoading(context);
       showSnackBar('Login Success', context);
 
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, HomeView.id);
     } catch (e) {
       print('Error ${e.toString()}');
 
