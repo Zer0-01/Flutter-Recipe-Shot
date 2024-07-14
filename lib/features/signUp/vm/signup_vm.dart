@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/features/signin/view/signin_view.dart';
 
 class SignupVm extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -22,7 +23,7 @@ class SignupVm extends ChangeNotifier {
         await _auth.signOut();
         showSnackbar(context, 'Register Successful');
 
-        Navigator.pushReplacementNamed(context, '/signin');
+        Navigator.pushReplacementNamed(context, SigninView.id);
       }
     } catch (e) {
       print('Error: ${e.toString()}');

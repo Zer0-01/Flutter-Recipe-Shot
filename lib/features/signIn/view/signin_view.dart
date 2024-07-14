@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/features/signIn/view/widget/sign_in_button_widget.dart';
-import 'package:flutter_recipe_shot/features/signIn/view/widget/sign_up_navigator_widget.dart';
-import 'package:flutter_recipe_shot/features/signIn/view/widget/text_form_field_widget.dart';
-import 'package:flutter_recipe_shot/features/signIn/vm/signin_vm.dart';
-import 'package:flutter_recipe_shot/features/signUp/view/signup_view.dart';
+import 'package:flutter_recipe_shot/features/signin/view/widget/sign_in_button_widget.dart';
+import 'package:flutter_recipe_shot/features/signin/view/widget/sign_up_navigator_widget.dart';
+import 'package:flutter_recipe_shot/features/signin/view/widget/text_form_field_widget.dart';
+import 'package:flutter_recipe_shot/features/signin/vm/signin_vm.dart';
+import 'package:flutter_recipe_shot/features/signup/view/signup_view.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
 class SigninView extends StatefulWidget {
+  static const String id = 'signin_view';
   const SigninView({super.key});
 
   @override
