@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
+import 'package:flutter_recipe_shot/features/recipes/vm/recipes_vm.dart';
+import 'package:provider/provider.dart';
 
 class RecipesView extends StatefulWidget {
   static const String id = 'recipes_view';
@@ -9,10 +12,45 @@ class RecipesView extends StatefulWidget {
 }
 
 class _RecipesViewState extends State<RecipesView> {
+  RecipesVm vm = RecipesVm();
+
+  @override
+  void initState() {
+    super.initState();
+    vm.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      body: ChangeNotifierProvider<RecipesVm>(
+        create: (context) => vm,
+        child: Consumer<RecipesVm>(
+          builder: (context, vm, _) {
+            switch (vm.recipesResponse.status) {
+              case ApiStatus.LOADING:
+                return CircularProgressIndicator();
+              case ApiStatus.ERROR:
+                return Placeholder();
+              case ApiStatus.COMPLETED:
+                return vm.listRecipe.isEmpty
+                    ? Text('Is empty')
+                    : ListView.builder(
+                        itemCount: vm.listRecipe.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            child: Text(vm.listRecipe[index].title),
+                          );
+                        },
+                      );
+              default:
+            }
+
+            return Container();
+          },
+        ),
+      ),
     );
   }
 }
