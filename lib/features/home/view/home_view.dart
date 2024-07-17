@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/features/home/vm/home_vm.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
 class HomeView extends StatefulWidget {
@@ -11,6 +11,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  HomeVm vm = HomeVm();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,13 +37,18 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            FirebaseAuth.instance.signOut();
-          },
-          child: const Text('logout'),
-        ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {
+              vm.toRecipesView(context);
+            },
+            child: Card(
+              child: Icon(Icons.restaurant),
+            ),
+          )
+        ],
       ),
     );
   }

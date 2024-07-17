@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
+import 'package:flutter_recipe_shot/features/recipes/view/recipes_view.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
 import 'package:flutter_recipe_shot/features/signup/view/signup_view.dart';
 import 'package:flutter_recipe_shot/features/splash/view/splash_view.dart';
@@ -27,6 +28,8 @@ class MyApp extends StatelessWidget {
         SigninView.id: (context) => const SigninView(),
         SignupView.id: (context) => const SignupView(),
         HomeView.id: (context) => const HomeView(),
+        RecipesView.id: (context) => const RecipesView(),
+
       },
       title: 'Recipe Shot',
       theme: ThemeData(primarySwatch: Colors.blue),
