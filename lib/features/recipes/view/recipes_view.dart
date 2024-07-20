@@ -24,18 +24,24 @@ class _RecipesViewState extends State<RecipesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          vm.toAddRecipeView(context);
+        },
+        child: const Icon(Icons.add),
+      ),
       body: ChangeNotifierProvider<RecipesVm>(
         create: (context) => vm,
         child: Consumer<RecipesVm>(
           builder: (context, vm, _) {
             switch (vm.recipesResponse.status) {
               case ApiStatus.LOADING:
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               case ApiStatus.ERROR:
-                return Placeholder();
+                return const Placeholder();
               case ApiStatus.COMPLETED:
                 return vm.listRecipe.isEmpty
-                    ? Text('Is empty')
+                    ? const Text('Is empty')
                     : ListView.builder(
                         itemCount: vm.listRecipe.length,
                         itemBuilder: (context, index) {

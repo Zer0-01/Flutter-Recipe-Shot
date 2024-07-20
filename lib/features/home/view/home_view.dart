@@ -44,7 +44,7 @@ class _HomeViewState extends State<HomeView> {
             onTap: () {
               vm.toRecipesView(context);
             },
-            child: Card(
+            child: const Card(
               child: Icon(Icons.restaurant),
             ),
           )
