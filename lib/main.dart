@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/view/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
 import 'package:flutter_recipe_shot/features/recipes/view/recipes_view.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         SignupView.id: (context) => const SignupView(),
         HomeView.id: (context) => const HomeView(),
         RecipesView.id: (context) => const RecipesView(),
-
+        AddRecipeView.id: (context) => const AddRecipeView(),
       },
       title: 'Recipe Shot',
       theme: ThemeData(primarySwatch: Colors.blue),
