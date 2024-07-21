@@ -21,7 +21,7 @@ class _SigninViewState extends State<SigninView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondaryColor,
+      backgroundColor: AppColors.darkGreenColor,
       body: Form(
         key: _formKey,
         child: Padding(

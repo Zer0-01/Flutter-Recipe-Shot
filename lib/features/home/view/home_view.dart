@@ -23,7 +23,7 @@ class _HomeViewState extends State<HomeView> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(color: AppColors.primaryColor),
+              decoration: BoxDecoration(color: AppColors.darkGreenColor),
               child: const Text('User'),
             ),
             ListTile(
