@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/home/vm/home_vm.dart';
+import 'package:flutter_recipe_shot/features/home/widget/home_card_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
 class HomeView extends StatefulWidget {
@@ -16,7 +17,9 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome Back'),
+        foregroundColor: AppColors.whiteColor,
+        backgroundColor: AppColors.lightGreenColor,
+        title: const Text('Welcome Back', style: TextStyle(fontWeight: FontWeight.bold),),
       ),
       drawer: Drawer(
         child: ListView(
@@ -32,23 +35,26 @@ class _HomeViewState extends State<HomeView> {
             ),
             ListTile(
               title: const Text('Setting'),
-              onTap: () {},
+              onTap: () {
+                vm.signOut(context);
+              },
             ),
           ],
         ),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              vm.toRecipesView(context);
-            },
-            child: const Card(
-              child: Icon(Icons.restaurant),
-            ),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.count(
+          crossAxisCount: 2,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                vm.toRecipesView(context);
+              },
+              child: const HomeCardWidget(icon: Icons.food_bank, title: 'Recipe List')
+            )
+          ],
+        ),
       ),
     );
   }
