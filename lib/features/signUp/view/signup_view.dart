@@ -22,7 +22,7 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.secondaryColor,
+      backgroundColor: AppColors.darkGreenColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -66,7 +66,7 @@ class _SignupViewState extends State<SignupView> {
                     SizedBoxWidget.h32,
                     SignUpButtonWidget(
                       data: 'Sign Up',
-                      buttonBackgroundColor: AppColors.primaryColor,
+                      buttonBackgroundColor: AppColors.darkGreenColor,
                       buttonForegroundColor: Colors.white,
                       onPressed: vm.isLoading
                           ? null

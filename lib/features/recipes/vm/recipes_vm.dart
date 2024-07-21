@@ -8,7 +8,7 @@ class RecipesVm extends ChangeNotifier {
   ApiResponse<List<Recipe>> recipesResponse = ApiResponse.loading();
   List<Recipe> listRecipe = [];
 
-  void _setRecipes(ApiResponse<List<Recipe>> response) {
+  void _setRecipesResponse(ApiResponse<List<Recipe>> response) {
     print('Response: $response');
     recipesResponse = response;
     notifyListeners();
@@ -21,7 +21,7 @@ class RecipesVm extends ChangeNotifier {
 
   Future<void> getRecipes() async {
     try {
-      _setRecipes(ApiResponse.loading());
+      _setRecipesResponse(ApiResponse.loading());
 
       CollectionReference recipesCollection =
           FirebaseFirestore.instance.collection('recipes');
@@ -34,9 +34,9 @@ class RecipesVm extends ChangeNotifier {
           .map((doc) => Recipe.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
 
-      _setRecipes(ApiResponse.completed(value));
+      _setRecipesResponse(ApiResponse.completed(value));
     } catch (error) {
-      _setRecipes(ApiResponse.error(error.toString()));
+      _setRecipesResponse(ApiResponse.error(error.toString()));
     }
   }
 
