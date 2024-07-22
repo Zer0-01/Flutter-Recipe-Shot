@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/features/signin/view/widget/sign_in_button_widget.dart';
 import 'package:flutter_recipe_shot/features/signin/view/widget/sign_up_navigator_widget.dart';
-import 'package:flutter_recipe_shot/features/signin/view/widget/text_form_field_widget.dart';
+import 'package:flutter_recipe_shot/features/signin/view/widget/signin_button_widget.dart';
+import 'package:flutter_recipe_shot/features/signin/view/widget/signin_text_form_field_widget.dart';
 import 'package:flutter_recipe_shot/features/signin/vm/signin_vm.dart';
 import 'package:flutter_recipe_shot/features/signup/view/signup_view.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
@@ -37,36 +37,34 @@ class _SigninViewState extends State<SigninView> {
               const SizedBox(
                 height: 40,
               ),
-              TextFormFieldWidget(
-                inputController: vm.emailController,
-                labelText: 'Email',
+              SigninTextFormFieldWidget(
+                controller: vm.emailController,
+                obscureText: false,
+                hintText: 'Email',
+                icon: Icons.email,
                 validator: (value) => value!.isEmpty ? 'Enter an email' : null,
               ),
               const SizedBox(
-                height: 16,
+                height: 32,
               ),
-              TextFormFieldWidget(
-                inputController: vm.passwordController,
-                labelText: 'Password',
+              SigninTextFormFieldWidget(
+                controller: vm.passwordController,
+                obscureText: true,
+                icon: Icons.key,
+                hintText: 'Password',
                 validator: (value) => value!.length < 6
                     ? "Enter a password 6+ characters long"
                     : null,
               ),
               const SizedBox(
-                height: 16,
+                height: 32,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: SignInButtonWidget(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          vm.signIn(context);
-                        }
-                      },
-                    ),
-                  ),
-                ],
+              SignInButtonWidget(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    vm.signIn(context);
+                  }
+                },
               ),
               SignUpNavigatorWidget(
                 onPressed: () {
