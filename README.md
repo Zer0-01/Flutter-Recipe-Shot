@@ -1,16 +1,20 @@
-# flutter_recipe_shot
+# Recipe Shot
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+**Recipe Shot** is a mobile application developed using Dart and the Flutter framework. It is designed to provide users with a seamless experience for managing and exploring recipes. The backend is powered by Firebase, utilizing Firebase Authentication and Firebase Firestore. The app's state management is handled by the Provider package, and it follows the MVVM (Model-View-ViewModel) design pattern.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **User Authentication:** Sign in, sign up, and log out functionality using Firebase Authentication.
+- **Recipe Management:** View a list of recipes and upload new recipes.
+- **Future Enhancements:** Planned improvements and new features to enhance the user experience.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Technology Stack
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Frontend:** Dart and Flutter
+- **Backend:** Firebase
+  - **Firebase Authentication**
+  - **Firebase Firestore**
+- **State Management:** Provider
+- **Design Pattern:** MVVM (Model-View-ViewModel)
