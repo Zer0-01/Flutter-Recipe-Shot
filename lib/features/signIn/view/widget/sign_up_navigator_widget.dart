@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
 class SignUpNavigatorWidget extends StatelessWidget {
   final void Function()? onPressed;
@@ -11,9 +12,9 @@ class SignUpNavigatorWidget extends StatelessWidget {
           foregroundColor: Colors.blue,
         ),
         onPressed: onPressed,
-        child: const Text(
+        child: Text(
           'Not Sign Up Yet, Click Here',
-          style: TextStyle(color: Colors.blue),
+          style: TextStyle(color: AppColors.whiteColor),
         ));
   }
 }
