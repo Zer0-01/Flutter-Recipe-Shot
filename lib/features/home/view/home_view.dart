@@ -19,7 +19,10 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         foregroundColor: AppColors.whiteColor,
         backgroundColor: AppColors.lightGreenColor,
-        title: const Text('Welcome Back', style: TextStyle(fontWeight: FontWeight.bold),),
+        title: const Text(
+          'Welcome Back',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       drawer: Drawer(
         child: ListView(
@@ -42,18 +45,27 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                vm.toRecipesView(context);
-              },
-              child: const HomeCardWidget(icon: Icons.food_bank, title: 'Recipe List')
-            )
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [AppColors.lightGreenColor, AppColors.whiteColor],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: GridView.count(
+            crossAxisCount: 2,
+            children: <Widget>[
+              GestureDetector(
+                  onTap: () {
+                    vm.toRecipesView(context);
+                  },
+                  child: const HomeCardWidget(
+                      icon: Icons.food_bank, title: 'Recipe List'))
+            ],
+          ),
         ),
       ),
     );
