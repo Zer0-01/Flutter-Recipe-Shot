@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
 class LoadingDialogWidget extends StatelessWidget {
   const LoadingDialogWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Dialog(
+    return Dialog(
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
-            SizedBox(width: 16),
-            Text("Loading..."),
+            CircularProgressIndicator(color: AppColors.darkGreenColor),
+            const SizedBox(width: 16),
+            const Text("Loading..."),
           ],
         ),
       ),
