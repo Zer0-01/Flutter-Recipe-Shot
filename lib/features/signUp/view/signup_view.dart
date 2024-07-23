@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/features/signup/view/widget/sign_up_button_widget.dart';
-import 'package:flutter_recipe_shot/features/signup/view/widget/text_form_field_widget.dart';
+import 'package:flutter_recipe_shot/features/signup/view/widget/signup_elevated_button_widget.dart';
+import 'package:flutter_recipe_shot/features/signup/view/widget/signup_text_form_field_widget.dart';
 import 'package:flutter_recipe_shot/features/signup/vm/signup_vm.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:flutter_recipe_shot/res/widgets/sized_box_widget.dart';
@@ -18,6 +18,7 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   SignupVm vm = SignupVm();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class _SignupViewState extends State<SignupView> {
       backgroundColor: AppColors.darkGreenColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.whiteColor,
         elevation: 0.0,
         title: const TextWidget(
           data: 'Sign Up',
@@ -38,36 +40,46 @@ class _SignupViewState extends State<SignupView> {
             return Form(
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TextFormFieldWidget(
-                      labelText: 'Name',
+                    SignupTextFormFieldWidget(
+                      hintText: 'Name',
                       validator: (value) =>
                           value!.isEmpty ? 'Enter a name' : null,
-                      inputController: vm.nameController,
+                      controller: vm.nameController,
+                      obscureText: false,
+                      leadingIcon: Icons.person,
                     ),
                     SizedBoxWidget.h32,
-                    TextFormFieldWidget(
-                      labelText: 'Email',
+                    SignupTextFormFieldWidget(
+                      hintText: 'Email',
                       validator: (value) =>
                           value!.isEmpty ? 'Enter an email' : null,
-                      inputController: vm.emailController,
+                      controller: vm.emailController,
+                      leadingIcon: Icons.email,
+                      obscureText: false,
                     ),
                     SizedBoxWidget.h32,
-                    TextFormFieldWidget(
-                      labelText: 'Password',
+                    SignupTextFormFieldWidget(
+                      hintText: 'Password',
                       validator: (value) => value!.length < 6
                           ? "Enter a password 6+ characters long"
                           : null,
-                      inputController: vm.passwordController,
+                      controller: vm.passwordController,
+                      leadingIcon: Icons.lock,
+                      trailingIcon:
+                          _isObscure ? Icons.visibility_off : Icons.visibility,
+                      obscureText: _isObscure,
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
                     ),
                     SizedBoxWidget.h32,
                     SignUpButtonWidget(
-                      data: 'Sign Up',
-                      buttonBackgroundColor: AppColors.darkGreenColor,
-                      buttonForegroundColor: Colors.white,
                       onPressed: vm.isLoading
                           ? null
                           : () async {
