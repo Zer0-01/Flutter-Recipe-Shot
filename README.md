@@ -21,5 +21,5 @@
 
 ## Screenshot
 
-  ![Login](https://github.com/user-attachments/assets/0d98dcc6-9d5e-40c4-85cc-0a16e0b40f5e){height=200}
+  ![Login](https://github.com/user-attachments/assets/0d98dcc6-9d5e-40c4-85cc-0a16e0b40f5e | width=200)
 
