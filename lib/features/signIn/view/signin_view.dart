@@ -17,6 +17,7 @@ class SigninView extends StatefulWidget {
 class _SigninViewState extends State<SigninView> {
   final SigninVm vm = SigninVm();
   final _formKey = GlobalKey<FormState>();
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _SigninViewState extends State<SigninView> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(18.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -41,7 +42,7 @@ class _SigninViewState extends State<SigninView> {
                 controller: vm.emailController,
                 obscureText: false,
                 hintText: 'Email',
-                icon: Icons.email,
+                leadingIcon: Icons.email,
                 validator: (value) => value!.isEmpty ? 'Enter an email' : null,
               ),
               const SizedBox(
@@ -49,8 +50,15 @@ class _SigninViewState extends State<SigninView> {
               ),
               SigninTextFormFieldWidget(
                 controller: vm.passwordController,
-                obscureText: true,
-                icon: Icons.key,
+                obscureText: _isObscure,
+                leadingIcon: Icons.key,
+                trailingIcon:
+                    _isObscure ? Icons.visibility_off : Icons.visibility,
+                onPressed: () {
+                  setState(() {
+                    _isObscure = !_isObscure;
+                  });
+                },
                 hintText: 'Password',
                 validator: (value) => value!.length < 6
                     ? "Enter a password 6+ characters long"
