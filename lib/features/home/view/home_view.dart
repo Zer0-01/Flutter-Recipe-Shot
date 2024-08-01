@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/features/home/vm/home_vm.dart';
+import 'package:flutter_recipe_shot/features/home/view_model/home_view_model.dart';
 import 'package:flutter_recipe_shot/features/home/widget/home_card_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
@@ -12,7 +12,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  HomeVm vm = HomeVm();
+  HomeViewModel vm = HomeViewModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

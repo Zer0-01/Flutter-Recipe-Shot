@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
-import 'package:flutter_recipe_shot/models/recipeUpdate.dart';
+import 'package:flutter_recipe_shot/models/recipe_update.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
-class AddRecipeVm extends ChangeNotifier {
+class AddRecipeViewModel extends ChangeNotifier {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

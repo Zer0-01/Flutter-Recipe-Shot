@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
 import 'package:flutter_recipe_shot/res/widgets/loading_dialog_widget.dart';
 
-class SigninVm extends ChangeNotifier {
+class SigninViewModel extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();

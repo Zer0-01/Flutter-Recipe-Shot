@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
-import 'package:flutter_recipe_shot/features/recipes/vm/recipes_vm.dart';
+import 'package:flutter_recipe_shot/features/recipes/view_model/recipes_view_model.dart';
 import 'package:flutter_recipe_shot/features/recipes/widget/recipes_card_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +14,7 @@ class RecipesView extends StatefulWidget {
 }
 
 class _RecipesViewState extends State<RecipesView> {
-  RecipesVm vm = RecipesVm();
+  RecipesViewModel vm = RecipesViewModel();
 
   @override
   void initState() {
@@ -37,9 +37,9 @@ class _RecipesViewState extends State<RecipesView> {
         },
         child: const Icon(Icons.add),
       ),
-      body: ChangeNotifierProvider<RecipesVm>(
+      body: ChangeNotifierProvider<RecipesViewModel>(
         create: (context) => vm,
-        child: Consumer<RecipesVm>(
+        child: Consumer<RecipesViewModel>(
           builder: (context, vm, _) {
             switch (vm.recipesResponse.status) {
               case ApiStatus.LOADING:

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/recipes/view/recipes_view.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
 
-class HomeVm extends ChangeNotifier {
+class HomeViewModel extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void toRecipesView(BuildContext context) {

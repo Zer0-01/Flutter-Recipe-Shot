@@ -4,7 +4,7 @@ import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 
-class RecipesVm extends ChangeNotifier {
+class RecipesViewModel extends ChangeNotifier {
   ApiResponse<List<Recipe>> recipesResponse = ApiResponse.loading();
   List<Recipe> listRecipe = [];
 

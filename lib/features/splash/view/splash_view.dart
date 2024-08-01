@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/features/splash/vm/splash_vm.dart';
+import 'package:flutter_recipe_shot/features/splash/view_model/splash_view_model.dart';
 
 class SplashView extends StatefulWidget {
   static const String id = 'splash_view';
@@ -10,7 +10,7 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  SplashVm vm = SplashVm();
+  SplashViewModel vm = SplashViewModel();
 
   @override
   void initState() {

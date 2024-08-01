@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/signin/view/signin_view.dart';
 
-class SignupVm extends ChangeNotifier {
+class SignupViewModel extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();

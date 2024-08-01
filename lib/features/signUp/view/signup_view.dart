@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/signup/view/widget/signup_elevated_button_widget.dart';
 import 'package:flutter_recipe_shot/features/signup/view/widget/signup_text_form_field_widget.dart';
-import 'package:flutter_recipe_shot/features/signup/vm/signup_vm.dart';
+import 'package:flutter_recipe_shot/features/signup/view_model/signup_view_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:flutter_recipe_shot/res/widgets/sized_box_widget.dart';
 import 'package:flutter_recipe_shot/res/widgets/text_widget.dart';
@@ -16,7 +16,7 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-  SignupVm vm = SignupVm();
+  SignupViewModel vm = SignupViewModel();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
 
@@ -33,9 +33,9 @@ class _SignupViewState extends State<SignupView> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      body: ChangeNotifierProvider<SignupVm>(
+      body: ChangeNotifierProvider<SignupViewModel>(
         create: (context) => vm,
-        child: Consumer<SignupVm>(
+        child: Consumer<SignupViewModel>(
           builder: (context, vm, child) {
             return Form(
               key: _formKey,

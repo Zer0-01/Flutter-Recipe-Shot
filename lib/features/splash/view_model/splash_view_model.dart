@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
 import 'package:flutter_recipe_shot/features/signin/view/signin_view.dart';
 
-class SplashVm extends ChangeNotifier {
+class SplashViewModel extends ChangeNotifier {
   Future<void> checkSignInStatus(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 2));
 

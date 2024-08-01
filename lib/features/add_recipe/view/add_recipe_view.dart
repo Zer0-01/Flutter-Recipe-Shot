@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
-import 'package:flutter_recipe_shot/features/add_recipe/vm/add_recipe_vm.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_elevated_button_widget.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_text_form_field_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
@@ -15,12 +15,12 @@ class AddRecipeView extends StatefulWidget {
 }
 
 class _AddRecipeViewState extends State<AddRecipeView> {
-  AddRecipeVm vm = AddRecipeVm();
+  AddRecipeViewModel vm = AddRecipeViewModel();
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => vm,
-      child: Consumer<AddRecipeVm>(
+      child: Consumer<AddRecipeViewModel>(
         builder: (context, value, child) {
           return Scaffold(
             backgroundColor: AppColors.pastelLightGreenColor,
