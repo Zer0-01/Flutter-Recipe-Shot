@@ -4,11 +4,14 @@ import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 import 'package:flutter_recipe_shot/models/recipe_update.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddRecipeViewModel extends ChangeNotifier {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final ImagePicker _imagePicker = ImagePicker();
+  XFile? image;
 
   ApiResponse<Recipe>? recipeResponse;
 
@@ -44,11 +47,24 @@ class AddRecipeViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> getImage() async {
+    final XFile? testImage =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    image = testImage;
+    notifyListeners();
+  }
+
+  //private method
   void _showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: AppColors.whiteColor,
-        content: Text(message, style: TextStyle(color: AppColors.darkGreenColor,  fontWeight: FontWeight.bold),),
+        content: Text(
+          message,
+          style: TextStyle(
+              color: AppColors.darkGreenColor, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

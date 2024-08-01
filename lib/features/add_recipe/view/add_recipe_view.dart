@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
@@ -27,7 +29,10 @@ class _AddRecipeViewState extends State<AddRecipeView> {
             appBar: AppBar(
               backgroundColor: AppColors.lightGreenColor,
               foregroundColor: AppColors.whiteColor,
-              title: const Text('Add New Recipe', style: TextStyle(fontWeight: FontWeight.bold),),
+              title: const Text(
+                'Add New Recipe',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -55,6 +60,26 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                   ),
                   const AddRecipeTextFormFieldWidget(
                     labelText: 'Steps',
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      vm.getImage();
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                      ),
+                      child: vm.image == null
+                          ? const Center(child: Text('Test'))
+                          : Image.file(
+                              File(vm.image!.path),
+                              fit: BoxFit.contain,
+                              width: 100,
+                              height: 100,
+                            ),
+                    ),
                   ),
                   const Spacer(),
                   AddRecipeElevatedButtonWidget(
