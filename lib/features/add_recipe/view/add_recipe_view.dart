@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
@@ -20,6 +21,9 @@ class _AddRecipeViewState extends State<AddRecipeView> {
   AddRecipeViewModel vm = AddRecipeViewModel();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
+    double screenWidth = size.width;
+
     return ChangeNotifierProvider(
       create: (context) => vm,
       child: Consumer<AddRecipeViewModel>(
@@ -61,27 +65,38 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                   const AddRecipeTextFormFieldWidget(
                     labelText: 'Steps',
                   ),
+                  const SizedBox(
+                    height: 32.0,
+                  ),
                   GestureDetector(
                     onTap: () {
                       vm.getImage();
                     },
-                    child: Container(
-                      width: double.infinity,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                      ),
-                      child: vm.image == null
-                          ? const Center(child: Text('Test'))
-                          : Image.file(
-                              File(vm.image!.path),
-                              fit: BoxFit.contain,
-                              width: 100,
-                              height: 100,
+                    child: SizedBox(
+                      width: screenWidth,
+                      height: 200,
+                      child: DottedBorder(
+                          borderType: BorderType.RRect,
+                          radius: const Radius.circular(12),
+                          color: Colors.blueGrey,
+                          strokeWidth: 1,
+                          dashPattern: const [5, 5],
+                          child: SizedBox.expand(
+                            child: FittedBox(
+                              child: vm.image != null
+                                  ? Image.file(File(vm.image!.path),
+                                      fit: BoxFit.cover)
+                                  : const Icon(
+                                      Icons.image_outlined,
+                                      color: Colors.blueGrey,
+                                    ),
                             ),
+                          )),
                     ),
                   ),
-                  const Spacer(),
+                  const SizedBox(
+                    height: 32.0,
+                  ),
                   AddRecipeElevatedButtonWidget(
                     buttonText: 'Save',
                     onPressed: vm.recipeResponse?.status == ApiStatus.LOADING
