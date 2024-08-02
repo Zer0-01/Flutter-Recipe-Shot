@@ -4,9 +4,9 @@ import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 class AddRecipeTextFormFieldWidget extends StatelessWidget {
   final String labelText;
   final TextEditingController? controller;
-
+  final String? Function(String?)? validator;
   const AddRecipeTextFormFieldWidget(
-      {super.key, required this.labelText, this.controller});
+      {super.key, required this.labelText, this.controller, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,7 @@ class AddRecipeTextFormFieldWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8.0),
         TextFormField(
+          validator: validator,
           controller: controller,
           style: TextStyle(
             color: AppColors.darkGreenColor,
