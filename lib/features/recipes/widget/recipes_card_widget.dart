@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class RecipesCardWidget extends StatelessWidget {
-  final String imageUrl;
+  final String? imageUrl;
   final String title;
   final String description;
   const RecipesCardWidget(
       {super.key,
-      required this.imageUrl,
+      this.imageUrl,
       required this.title,
       required this.description});
 
@@ -30,7 +30,9 @@ class RecipesCardWidget extends StatelessWidget {
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(12.0)),
                 image: DecorationImage(
-                  image: NetworkImage(imageUrl),
+                  image: imageUrl != null
+                      ? NetworkImage(imageUrl!)
+                      : const NetworkImage('https://picsum.photos/250?image=1'),
                   fit: BoxFit.cover,
                 ),
               ),
