@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
@@ -16,8 +19,13 @@ class AddRecipeView extends StatefulWidget {
 
 class _AddRecipeViewState extends State<AddRecipeView> {
   AddRecipeViewModel vm = AddRecipeViewModel();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
+    double screenWidth = size.width;
+
     return ChangeNotifierProvider(
       create: (context) => vm,
       child: Consumer<AddRecipeViewModel>(
@@ -27,45 +35,91 @@ class _AddRecipeViewState extends State<AddRecipeView> {
             appBar: AppBar(
               backgroundColor: AppColors.lightGreenColor,
               foregroundColor: AppColors.whiteColor,
-              title: const Text('Add New Recipe', style: TextStyle(fontWeight: FontWeight.bold),),
+              title: const Text(
+                'Add New Recipe',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  AddRecipeTextFormFieldWidget(
-                    labelText: 'Title',
-                    controller: vm.titleController,
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      AddRecipeTextFormFieldWidget(
+                        labelText: 'Title',
+                        controller: vm.titleController,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Enter a title' : null,
+                      ),
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      AddRecipeTextFormFieldWidget(
+                        labelText: 'Description',
+                        controller: vm.descriptionController,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Enter a Description' : null,
+                      ),
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      const AddRecipeTextFormFieldWidget(
+                        labelText: 'Ingredients',
+                      ),
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      const AddRecipeTextFormFieldWidget(
+                        labelText: 'Steps',
+                      ),
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          vm.getImage();
+                        },
+                        child: SizedBox(
+                          width: screenWidth,
+                          height: 200,
+                          child: DottedBorder(
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(12),
+                              color: Colors.blueGrey,
+                              strokeWidth: 1,
+                              dashPattern: const [5, 5],
+                              child: SizedBox.expand(
+                                child: FittedBox(
+                                  child: vm.image != null
+                                      ? Image.file(File(vm.image!.path),
+                                          fit: BoxFit.cover)
+                                      : const Icon(
+                                          Icons.image_outlined,
+                                          color: Colors.blueGrey,
+                                        ),
+                                ),
+                              )),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      AddRecipeElevatedButtonWidget(
+                        buttonText: 'Save',
+                        onPressed:
+                            vm.recipeResponse?.status == ApiStatus.LOADING
+                                ? null
+                                : () {
+                                    if (_formKey.currentState!.validate()) {
+                                      vm.createRecipe(context);
+                                    }
+                                  },
+                      )
+                    ],
                   ),
-                  const SizedBox(
-                    height: 32.0,
-                  ),
-                  AddRecipeTextFormFieldWidget(
-                    labelText: 'Description',
-                    controller: vm.descriptionController,
-                  ),
-                  const SizedBox(
-                    height: 32.0,
-                  ),
-                  const AddRecipeTextFormFieldWidget(
-                    labelText: 'Ingredients',
-                  ),
-                  const SizedBox(
-                    height: 32.0,
-                  ),
-                  const AddRecipeTextFormFieldWidget(
-                    labelText: 'Steps',
-                  ),
-                  const Spacer(),
-                  AddRecipeElevatedButtonWidget(
-                    buttonText: 'Save',
-                    onPressed: vm.recipeResponse?.status == ApiStatus.LOADING
-                        ? null
-                        : () {
-                            vm.createRecipe(context);
-                          },
-                  )
-                ],
+                ),
               ),
             ),
           );
