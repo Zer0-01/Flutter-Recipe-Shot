@@ -1,10 +1,12 @@
 class RecipeUpdate {
   final String title;
   final String description;
+  final String? imageUrl;
 
   RecipeUpdate({
     required this.title,
     required this.description,
+    this.imageUrl,
   });
 
   // Factory constructor to create a Recipe from a JSON map
@@ -12,6 +14,7 @@ class RecipeUpdate {
     return RecipeUpdate(
       title: json['title'],
       description: json['description'],
+      imageUrl: json['imageUrl'],
     );
   }
 
@@ -20,6 +23,7 @@ class RecipeUpdate {
     return {
       'title': title,
       'description': description,
+      'imageUrl': imageUrl,
     };
   }
 }
