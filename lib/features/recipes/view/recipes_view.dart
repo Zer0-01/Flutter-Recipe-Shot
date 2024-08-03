@@ -55,9 +55,14 @@ class _RecipesViewState extends State<RecipesView> {
                           itemCount: vm.listRecipe.length,
                           itemBuilder: (context, index) {
                             return RecipesCardWidget(
-                                imageUrl: vm.listRecipe[index].imageUrl,
-                                title: vm.listRecipe[index].title,
-                                description: vm.listRecipe[index].description);
+                              imageUrl: vm.listRecipe[index].imageUrl,
+                              title: vm.listRecipe[index].title,
+                              description: vm.listRecipe[index].description,
+                              onTap: () {
+                                vm.toRecipeDetailsView(
+                                    context, vm.listRecipe[index]);
+                              },
+                            );
                           },
                         ),
                       );
