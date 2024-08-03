@@ -8,12 +8,13 @@ class RecipeDetailsViewModel extends ChangeNotifier {
   late Recipe recipe;
 
   Future<void> init(String recipeId) async {
-    await getRecipeDetails(recipeId);
+    await _getRecipeDetails(recipeId);
     _load();
     notifyListeners();
   }
 
-  Future<void> getRecipeDetails(String recipeId) async {
+//private method
+  Future<void> _getRecipeDetails(String recipeId) async {
     try {
       _setRecipeResponse(ApiResponse.loading());
 
@@ -30,7 +31,6 @@ class RecipeDetailsViewModel extends ChangeNotifier {
     }
   }
 
-//private method
   void _setRecipeResponse(ApiResponse<Recipe> response) {
     print('Response: $response');
     recipeResponse = response;
