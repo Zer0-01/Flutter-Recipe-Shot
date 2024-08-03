@@ -55,7 +55,7 @@ class _RecipesViewState extends State<RecipesView> {
                           itemCount: vm.listRecipe.length,
                           itemBuilder: (context, index) {
                             return RecipesCardWidget(
-                                imageUrl: 'https://picsum.photos/250?image=$index',
+                                imageUrl: vm.listRecipe[index].imageUrl,
                                 title: vm.listRecipe[index].title,
                                 description: vm.listRecipe[index].description);
                           },
