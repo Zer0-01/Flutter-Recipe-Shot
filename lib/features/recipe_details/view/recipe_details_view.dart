@@ -78,6 +78,41 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                             fontSize: 20,
                           ),
                         ),
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        DefaultTabController(
+                          length: 2,
+                          child: Expanded(
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  labelColor: AppColors.darkGreenColor,
+                                  tabs: const [
+                                    Tab(text: 'Ingredients'),
+                                    Tab(text: 'Directions'),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: TabBarView(
+                                    children: [
+                                      Text(
+                                        vm.recipe.title,
+                                        style:
+                                            const TextStyle(fontSize: 16),
+                                      ),
+                                      Text(
+                                        vm.recipe.description,
+                                        style:
+                                            const TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ));
