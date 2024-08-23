@@ -10,6 +10,10 @@ class HomeViewModel extends ChangeNotifier {
     Navigator.pushNamed(context, RecipesView.id);
   }
 
+  void toMyRecipesView(BuildContext context) {
+    Navigator.pushNamed(context, RecipesView.id);
+  }
+
   Future<void> signOut(BuildContext context) async {
     try {
       await _auth.signOut();
