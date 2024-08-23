@@ -32,7 +32,11 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
         builder: (context, vm, _) {
           switch (vm.recipeResponse.status) {
             case ApiStatus.LOADING:
-              return const CircularProgressIndicator();
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             case ApiStatus.ERROR:
               return const Placeholder();
             case ApiStatus.COMPLETED:
@@ -87,6 +91,7 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                             child: Column(
                               children: [
                                 TabBar(
+                                  indicatorColor: AppColors.darkGreenColor,
                                   labelColor: AppColors.darkGreenColor,
                                   tabs: const [
                                     Tab(text: 'Ingredients'),
@@ -97,14 +102,14 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                                   child: TabBarView(
                                     children: [
                                       Text(
-                                        vm.recipe.title,
-                                        style:
-                                            const TextStyle(fontSize: 16),
+                                        vm.recipe.ingredients ??
+                                            'No ingredients',
+                                        style: const TextStyle(fontSize: 16),
                                       ),
                                       Text(
-                                        vm.recipe.description,
-                                        style:
-                                            const TextStyle(fontSize: 16),
+                                        vm.recipe.instructions ??
+                                            'No instructions',
+                                        style: const TextStyle(fontSize: 16),
                                       ),
                                     ],
                                   ),
