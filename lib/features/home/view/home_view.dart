@@ -59,11 +59,18 @@ class _HomeViewState extends State<HomeView> {
             crossAxisCount: 2,
             children: <Widget>[
               GestureDetector(
+                onTap: () {
+                  vm.toRecipesView(context);
+                },
+                child: const HomeCardWidget(
+                    icon: Icons.food_bank, title: 'Recipe List'),
+              ),
+              GestureDetector(
                   onTap: () {
-                    vm.toRecipesView(context);
+                    vm.toMyRecipesView(context);
                   },
                   child: const HomeCardWidget(
-                      icon: Icons.food_bank, title: 'Recipe List'))
+                      icon: Icons.emoji_people, title: 'My Recipe'))
             ],
           ),
         ),
