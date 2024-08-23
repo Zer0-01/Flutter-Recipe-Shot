@@ -11,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 class AddRecipeViewModel extends ChangeNotifier {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController ingredientsController = TextEditingController();
+  TextEditingController instructionsController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final ImagePicker _imagePicker = ImagePicker();
   XFile? image;
@@ -33,6 +35,8 @@ class AddRecipeViewModel extends ChangeNotifier {
       RecipeUpdate recipeUpdate = RecipeUpdate(
           title: titleController.text,
           description: descriptionController.text,
+          ingredients: ingredientsController.text,
+          instructions: instructionsController.text,
           imageUrl: imageUrl);
 
       Map<String, dynamic> recipeUpdateData = recipeUpdate.toJson();

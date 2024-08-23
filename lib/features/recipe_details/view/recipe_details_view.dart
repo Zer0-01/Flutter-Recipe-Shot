@@ -97,12 +97,12 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                                   child: TabBarView(
                                     children: [
                                       Text(
-                                        vm.recipe.title,
+                                        vm.recipe.ingredients ?? 'No ingredients',
                                         style:
                                             const TextStyle(fontSize: 16),
                                       ),
                                       Text(
-                                        vm.recipe.description,
+                                        vm.recipe.instructions ?? 'No instructions',
                                         style:
                                             const TextStyle(fontSize: 16),
                                       ),
