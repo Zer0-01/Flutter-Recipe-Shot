@@ -65,13 +65,15 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                       const SizedBox(
                         height: 32.0,
                       ),
-                      const AddRecipeTextFormFieldWidget(
+                       AddRecipeTextFormFieldWidget(
+                        controller: vm.ingredientsController,
                         labelText: 'Ingredients',
                       ),
                       const SizedBox(
                         height: 32.0,
                       ),
-                      const AddRecipeTextFormFieldWidget(
+                       AddRecipeTextFormFieldWidget(
+                        controller: vm.instructionsController,
                         labelText: 'Steps',
                       ),
                       const SizedBox(
