@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
 import 'package:flutter_recipe_shot/features/recipes/view/recipes_view.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
 
@@ -16,6 +17,7 @@ class HomeViewModel extends ChangeNotifier {
 
   Future<void> signOut(BuildContext context) async {
     try {
+      await SharedPreferencesHelper.instance.clear();
       await _auth.signOut();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
