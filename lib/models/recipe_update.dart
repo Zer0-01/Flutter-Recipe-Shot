@@ -4,6 +4,7 @@ class RecipeUpdate {
   final String? ingredients;
   final String? instructions;
   final String? imageUrl;
+  final String userUid;
 
   RecipeUpdate({
     required this.title,
@@ -11,6 +12,7 @@ class RecipeUpdate {
     this.ingredients,
     this.instructions,
     this.imageUrl,
+    required this.userUid,
   });
 
   // Factory constructor to create a Recipe from a JSON map
@@ -21,6 +23,7 @@ class RecipeUpdate {
       ingredients: json['ingredients'],
       instructions: json['instructions'],
       imageUrl: json['imageUrl'],
+      userUid: json['userUid'],
     );
   }
 
@@ -32,6 +35,7 @@ class RecipeUpdate {
       'ingredients': ingredients,
       'instructions': instructions,
       'imageUrl': imageUrl,
+      'userUid': userUid,
     };
   }
 }

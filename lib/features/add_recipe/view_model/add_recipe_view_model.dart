@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 import 'package:flutter_recipe_shot/models/recipe_update.dart';
@@ -33,11 +34,13 @@ class AddRecipeViewModel extends ChangeNotifier {
       }
 
       RecipeUpdate recipeUpdate = RecipeUpdate(
-          title: titleController.text,
-          description: descriptionController.text,
-          ingredients: ingredientsController.text,
-          instructions: instructionsController.text,
-          imageUrl: imageUrl);
+        title: titleController.text,
+        description: descriptionController.text,
+        ingredients: ingredientsController.text,
+        instructions: instructionsController.text,
+        imageUrl: imageUrl,
+        userUid: SharedPreferencesHelper.instance.getUserUid('USERUID') ?? '0',
+      );
 
       Map<String, dynamic> recipeUpdateData = recipeUpdate.toJson();
       DocumentReference recipeDocument =
