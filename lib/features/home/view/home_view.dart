@@ -42,6 +42,7 @@ class _HomeViewState extends State<HomeView> {
       backgroundColor: AppColors.pastelLightGreenColor,
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: AppColors.darkGreenColor,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const [
@@ -58,14 +59,6 @@ class _HomeViewState extends State<HomeView> {
             label: 'Settings',
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.lightGreenColor,
-        foregroundColor: AppColors.whiteColor,
-        onPressed: () {
-          vm.toAddRecipeView(context);
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }
