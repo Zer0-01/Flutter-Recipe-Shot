@@ -21,9 +21,11 @@
 
 ## Screenshot
 
-|     |  |
-| -------- | ------- |
-|  <img src="https://github.com/user-attachments/assets/0d98dcc6-9d5e-40c4-85cc-0a16e0b40f5e" height="400"> |  <img src="https://github.com/user-attachments/assets/0d98dcc6-9d5e-40c4-85cc-0a16e0b40f5e" height="400">   |
-| Login |      |
-|     |     |
+### Login
+
+<img src="https://github.com/user-attachments/assets/0d98dcc6-9d5e-40c4-85cc-0a16e0b40f5e" alt="Login Screen" height="400">
+
+### Recipe List
+
+<img src="https://github.com/user-attachments/assets/0d98dcc6-9d5e-40c4-85cc-0a16e0b40f5e" alt="Recipe List Screen" height="400">
 
