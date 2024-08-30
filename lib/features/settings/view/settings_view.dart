@@ -43,14 +43,14 @@ class _SettingsViewState extends State<SettingsView> {
                                 onPressed: () {
                                   log('Cancel');
                                 },
-                                child: Text('Cancel'),
+                                child: const Text('Cancel'),
                               ),
                               ElevatedButton(
                                 onPressed: () {
                                   log('Logout');
                                   vm.logout();
                                 },
-                                child: Text('Logout'),
+                                child: const Text('Logout'),
                               ),
                             ],
                           );
