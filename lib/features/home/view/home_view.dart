@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/home/view_model/home_view_model.dart';
 import 'package:flutter_recipe_shot/features/home/widget/home_widget.dart';
-import 'package:flutter_recipe_shot/features/home/widget/profile_widget.dart';
+import 'package:flutter_recipe_shot/features/profile/view/profile_view.dart';
 import 'package:flutter_recipe_shot/features/settings/view/settings_view.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
@@ -18,7 +18,8 @@ class _HomeViewState extends State<HomeView> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomeWidget(),
-    const ProfileWidget(),
+    // const ProfileWidget(),
+    const ProfileView(),
     const SettingsView(),
   ];
 
