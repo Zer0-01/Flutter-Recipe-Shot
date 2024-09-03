@@ -6,7 +6,7 @@ import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({super.key});
+  const  HomeWidget({super.key});
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
