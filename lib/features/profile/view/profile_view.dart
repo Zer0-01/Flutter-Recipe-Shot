@@ -53,22 +53,26 @@ class _ProfileViewState extends State<ProfileView> {
                         itemBuilder: (context, index) {
                           final recipe = vm.listRecipe[index];
                           return Slidable(
-                            startActionPane: ActionPane(
+                            key: Key(recipe.id),
+                            endActionPane: ActionPane(
                               motion: const ScrollMotion(),
+                              dismissible: DismissiblePane(
+                                onDismissed: () {},
+                              ),
                               children: [
-                                SlidableAction(
-                                  onPressed: (context) {},
-                                  backgroundColor: Colors.red,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.delete,
-                                  label: 'Delete',
-                                ),
                                 SlidableAction(
                                   onPressed: (context) {},
                                   backgroundColor: Colors.blue,
                                   foregroundColor: Colors.white,
                                   icon: Icons.delete,
                                   label: 'Share',
+                                ),
+                                SlidableAction(
+                                  onPressed: (context) {},
+                                  backgroundColor: Colors.red,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Delete',
                                 ),
                               ],
                             ),
