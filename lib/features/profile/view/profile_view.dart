@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/profile/view_model/profile_view_model.dart';
 import 'package:flutter_recipe_shot/features/recipes/widget/recipes_card_widget.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 class ProfileView extends StatefulWidget {
@@ -13,7 +14,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   ProfileViewModel vm = ProfileViewModel();
-  
+
   @override
   Widget build(BuildContext context) {
     vm.init();
@@ -50,11 +51,33 @@ class _ProfileViewState extends State<ProfileView> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: vm.listRecipe.length,
                         itemBuilder: (context, index) {
-                          return RecipesCardWidget(
-                            imageUrl: vm.listRecipe[index].imageUrl,
-                            title: vm.listRecipe[index].title,
-                            description: vm.listRecipe[index].description,
-                            onTap: () {},
+                          final recipe = vm.listRecipe[index];
+                          return Slidable(
+                            startActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (context) {},
+                                  backgroundColor: Colors.red,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Delete',
+                                ),
+                                SlidableAction(
+                                  onPressed: (context) {},
+                                  backgroundColor: Colors.blue,
+                                  foregroundColor: Colors.white,
+                                  icon: Icons.delete,
+                                  label: 'Share',
+                                ),
+                              ],
+                            ),
+                            child: RecipesCardWidget(
+                              imageUrl: recipe.imageUrl,
+                              title: recipe.title,
+                              description: recipe.description,
+                              onTap: () {},
+                            ),
                           );
                         },
                       ),
