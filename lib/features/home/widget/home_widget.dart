@@ -6,7 +6,7 @@ import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({super.key});
+  const  HomeWidget({super.key});
 
   @override
   State<HomeWidget> createState() => _HomeWidgetState();
@@ -60,13 +60,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   builder: (context, vm, _) {
                     switch (vm.recipesResponse.status) {
                       case ApiStatus.LOADING:
-                        print('Enter loading');
                         return const CircularProgressIndicator();
                       case ApiStatus.ERROR:
-                        print('Enter error');
                         return const Placeholder();
                       case ApiStatus.COMPLETED:
-                        print('Enter complete');
                         return vm.listRecipe.isEmpty
                             ? const Text('Is empty')
                             : Expanded(

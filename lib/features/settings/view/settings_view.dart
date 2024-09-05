@@ -20,6 +20,10 @@ class _SettingsViewState extends State<SettingsView> {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
+      bottomNavigationBar: BottomNavigationBar(items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+      ]),
       body: ChangeNotifierProvider<SettingsViewModel>(
         create: (context) => vm,
         child: SettingsList(
