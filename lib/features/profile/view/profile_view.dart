@@ -68,7 +68,9 @@ class _ProfileViewState extends State<ProfileView> {
                                   label: 'Share',
                                 ),
                                 SlidableAction(
-                                  onPressed: (context) {},
+                                  onPressed: (context) {
+                                    vm.deleteRecipe(recipe.id);
+                                  },
                                   backgroundColor: Colors.red,
                                   foregroundColor: Colors.white,
                                   icon: Icons.delete,

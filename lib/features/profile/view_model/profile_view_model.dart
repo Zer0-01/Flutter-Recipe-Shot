@@ -36,6 +36,21 @@ class ProfileViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> deleteRecipe(String documentId) async {
+    try {
+      _setRecipesResponse(ApiResponse.loading());
+
+      CollectionReference recipesCollection =
+          FirebaseFirestore.instance.collection('recipes');
+
+      await recipesCollection.doc(documentId).delete();
+
+      print("success delete");
+    } catch (error) {
+      print(error.toString());
+    }
+  }
+
   void load() {
     listRecipe = recipesResponse.data ?? [];
   }
