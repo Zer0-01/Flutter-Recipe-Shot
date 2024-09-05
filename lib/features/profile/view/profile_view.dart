@@ -16,83 +16,88 @@ class _ProfileViewState extends State<ProfileView> {
   ProfileViewModel vm = ProfileViewModel();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     vm.init();
+  }
+  @override
+  Widget build(BuildContext context) {
     return ChangeNotifierProvider<ProfileViewModel>(
       create: (context) => vm,
       child: Consumer<ProfileViewModel>(
         builder: (context, vm, child) {
-          switch (vm.recipesResponse.status) {
-            case ApiStatus.LOADING:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            case ApiStatus.ERROR:
-              return Center(
-                child: Text(vm.recipesResponse.message.toString()),
-              );
-            case ApiStatus.COMPLETED:
-              return SingleChildScrollView(
-                child: SafeArea(
-                  child: Column(
-                    children: [
-                      const CircleAvatar(
-                        radius: 64,
-                        backgroundImage: NetworkImage(
-                            'https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942406_960_720.jpg'),
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      const Text('User Name'),
-                      Text(vm.userUid),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: vm.listRecipe.length,
-                        itemBuilder: (context, index) {
-                          final recipe = vm.listRecipe[index];
-                          return Slidable(
-                            key: Key(recipe.id),
-                            endActionPane: ActionPane(
-                              motion: const ScrollMotion(),
-                              dismissible: DismissiblePane(
-                                onDismissed: () {},
+          // Replacing switch-case with if-else
+          if (vm.recipesResponse.status == ApiStatus.LOADING || vm.deleteRecipeResponse?.status == ApiStatus.LOADING) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (vm.recipesResponse.status == ApiStatus.ERROR || vm.deleteRecipeResponse?.status == ApiStatus.ERROR) {
+            return Center(
+              child: Text(vm.recipesResponse.message.toString()),
+            );
+          } else if (vm.recipesResponse.status == ApiStatus.COMPLETED && vm.deleteRecipeResponse?.status != ApiStatus.ERROR) {
+            return SingleChildScrollView(
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    const CircleAvatar(
+                      radius: 64,
+                      backgroundImage: NetworkImage(
+                          'https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942406_960_720.jpg'),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const Text('User Name'),
+                    Text(vm.userUid),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: vm.recipesResponse.data?.length,
+                      itemBuilder: (context, index) {
+                        final recipe = vm.recipesResponse.data?[index];
+                        return Slidable(
+                          key: Key(recipe!.id),
+                          endActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            dismissible: DismissiblePane(
+                              onDismissed: () {},
+                            ),
+                            children: [
+                              SlidableAction(
+                                onPressed: (context) {},
+                                backgroundColor: Colors.blue,
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Share',
                               ),
-                              children: [
-                                SlidableAction(
-                                  onPressed: (context) {},
-                                  backgroundColor: Colors.blue,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.delete,
-                                  label: 'Share',
-                                ),
-                                SlidableAction(
-                                  onPressed: (context) {
-                                    vm.deleteRecipe(recipe.id);
-                                  },
-                                  backgroundColor: Colors.red,
-                                  foregroundColor: Colors.white,
-                                  icon: Icons.delete,
-                                  label: 'Delete',
-                                ),
-                              ],
-                            ),
-                            child: RecipesCardWidget(
-                              imageUrl: recipe.imageUrl,
-                              title: recipe.title,
-                              description: recipe.description,
-                              onTap: () {},
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                              SlidableAction(
+                                onPressed: (context) {
+                                  vm.deleteRecipe(recipe.id);
+                                },
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                            ],
+                          ),
+                          child: RecipesCardWidget(
+                            imageUrl: recipe.imageUrl,
+                            title: recipe.title,
+                            description: recipe.description,
+                            onTap: () {},
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              );
-            default:
+              ),
+            );
           }
+
+          // Default return if none of the conditions match
           return Container();
         },
         child: SingleChildScrollView(

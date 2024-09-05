@@ -7,12 +7,12 @@ import 'package:flutter_recipe_shot/models/recipe.dart';
 class ProfileViewModel extends ChangeNotifier {
   String userUid = '';
   ApiResponse<List<Recipe>> recipesResponse = ApiResponse.loading();
+  ApiResponse<bool>? deleteRecipeResponse;
   List<Recipe> listRecipe = [];
 
   Future<void> init() async {
     getUserUid();
     await getRecipes();
-    load();
   }
 
   void getUserUid() {
@@ -38,25 +38,27 @@ class ProfileViewModel extends ChangeNotifier {
 
   Future<void> deleteRecipe(String documentId) async {
     try {
-      _setRecipesResponse(ApiResponse.loading());
+      _setDeleteRecipeResponse(ApiResponse.loading());
 
       CollectionReference recipesCollection =
           FirebaseFirestore.instance.collection('recipes');
 
       await recipesCollection.doc(documentId).delete();
 
-      print("success delete");
+      await getRecipes();
     } catch (error) {
-      print(error.toString());
+      _setDeleteRecipeResponse(ApiResponse.error(error.toString()));
     }
   }
 
-  void load() {
-    listRecipe = recipesResponse.data ?? [];
+  void _setRecipesResponse(ApiResponse<List<Recipe>> response) {
+    print("Response: $response");
+    recipesResponse = response;
+    notifyListeners();
   }
 
-  void _setRecipesResponse(ApiResponse<List<Recipe>> response) {
-    recipesResponse = response;
+  void _setDeleteRecipeResponse(ApiResponse<bool> response) {
+    deleteRecipeResponse = response;
     notifyListeners();
   }
 }

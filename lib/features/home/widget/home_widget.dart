@@ -60,13 +60,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   builder: (context, vm, _) {
                     switch (vm.recipesResponse.status) {
                       case ApiStatus.LOADING:
-                        print('Enter loading');
                         return const CircularProgressIndicator();
                       case ApiStatus.ERROR:
-                        print('Enter error');
                         return const Placeholder();
                       case ApiStatus.COMPLETED:
-                        print('Enter complete');
                         return vm.listRecipe.isEmpty
                             ? const Text('Is empty')
                             : Expanded(
