@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
-import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
 import 'package:flutter_recipe_shot/features/main/view/main_view.dart';
 import 'package:flutter_recipe_shot/features/signin/view/signin_view.dart';
 
