@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/features/home/view/home_view.dart';
+import 'package:flutter_recipe_shot/features/main/view/main_view.dart';
 import 'package:flutter_recipe_shot/features/recipe_details/view/recipe_details_view.dart';
 import 'package:flutter_recipe_shot/features/recipes/view/recipes_view.dart';
 import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashView.id,
       routes: {
         SplashView.id: (context) => const SplashView(),
+        MainView.id: (context) => const MainView(),
         SigninView.id: (context) => const SigninView(),
         SignupView.id: (context) => const SignupView(),
         HomeView.id: (context) => const HomeView(),
