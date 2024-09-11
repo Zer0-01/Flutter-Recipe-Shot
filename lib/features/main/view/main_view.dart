@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/features/feed/view/feed_view.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
 class MainView extends StatefulWidget {
@@ -66,9 +67,7 @@ class _MainViewState extends State<MainView> {
         ],
       ),
       body: <Widget>[
-        const Center(
-          child: Text('Home'),
-        ),
+        FeedView(),
         const Center(
           child: Text('Search'),
         ),
