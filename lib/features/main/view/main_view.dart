@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/view/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/features/feed/view/feed_view.dart';
 import 'package:flutter_recipe_shot/features/main/view_model/main_view_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
@@ -109,7 +110,9 @@ class _MainViewState extends State<MainView> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, AddRecipeView.id);
+          },
           backgroundColor: AppColors.lightBlue,
           foregroundColor: Colors.white,
           child: const Icon(Icons.add),
