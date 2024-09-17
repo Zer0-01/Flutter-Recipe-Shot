@@ -7,4 +7,7 @@ class AppColors {
 
   static Color pastelDarkGreenColor = const Color(0xffc6dfd7);
   static Color pastelLightGreenColor = const Color(0xffd9ede7);
+
+  static Color lightBlue = const Color(0xFF68D2E8);
+  static Color yellow = const Color(0xFFFEEFAD);
 }

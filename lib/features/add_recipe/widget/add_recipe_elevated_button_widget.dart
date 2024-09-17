@@ -14,7 +14,7 @@ class AddRecipeElevatedButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.lightGreenColor, // Background color
+          backgroundColor: AppColors.lightBlue, // Background color
           foregroundColor: AppColors.whiteColor, // Foreground (text) color
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0), // Rounded corners
