@@ -31,14 +31,8 @@ class _AddRecipeViewState extends State<AddRecipeView> {
       child: Consumer<AddRecipeViewModel>(
         builder: (context, value, child) {
           return Scaffold(
-            backgroundColor: AppColors.pastelLightGreenColor,
             appBar: AppBar(
-              backgroundColor: AppColors.lightGreenColor,
-              foregroundColor: AppColors.whiteColor,
-              title: const Text(
-                'Add New Recipe',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              foregroundColor: AppColors.lightBlue,
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -65,14 +59,14 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                       const SizedBox(
                         height: 32.0,
                       ),
-                       AddRecipeTextFormFieldWidget(
+                      AddRecipeTextFormFieldWidget(
                         controller: vm.ingredientsController,
                         labelText: 'Ingredients',
                       ),
                       const SizedBox(
                         height: 32.0,
                       ),
-                       AddRecipeTextFormFieldWidget(
+                      AddRecipeTextFormFieldWidget(
                         controller: vm.instructionsController,
                         labelText: 'Steps',
                       ),
