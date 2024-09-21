@@ -6,9 +6,9 @@ import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_elevated_button_widget.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_text_form_field_widget.dart';
-import 'package:flutter_recipe_shot/features/add_recipe/widget/counter_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddRecipeView extends StatefulWidget {
   static const String id = 'add_recipe_view';
@@ -32,8 +32,10 @@ class _AddRecipeViewState extends State<AddRecipeView> {
       child: Consumer<AddRecipeViewModel>(
         builder: (context, value, child) {
           return Scaffold(
+            backgroundColor: AppColors.PURPLE_25,
             appBar: AppBar(
-              foregroundColor: AppColors.lightBlue,
+              foregroundColor: AppColors.PURPLE_100,
+              backgroundColor: Colors.transparent,
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -43,7 +45,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                   child: Column(
                     children: [
                       AddRecipeTextFormFieldWidget(
-                        labelText: 'Title',
+                        labelText: AppLocalizations.of(context)!.labelTitle,
                         controller: vm.titleController,
                         validator: (value) =>
                             value!.isEmpty ? 'Enter a title' : null,
@@ -67,7 +69,6 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                       const SizedBox(
                         height: 32.0,
                       ),
-                      CounterWidget(),
                       AddRecipeTextFormFieldWidget(
                         controller: vm.instructionsController,
                         labelText: 'Steps',

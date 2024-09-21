@@ -9,12 +9,12 @@ class CounterWidget extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {},
-          icon: Icon(Icons.remove),
+          icon: const Icon(Icons.remove),
         ),
-        Text("{Quantity}"),
+        const Text("{Quantity}"),
            IconButton(
           onPressed: () {},
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
         ),
       ],
     );

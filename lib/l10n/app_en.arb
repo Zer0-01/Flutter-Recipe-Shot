@@ -1,0 +1,6 @@
+{
+    "labelTitle": "Title",
+    "@labelTitle": {
+        "description": "label_title"
+    }
+}
