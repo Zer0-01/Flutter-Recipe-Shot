@@ -1,6 +1,10 @@
 {
     "labelTitle": "Title",
-    "@labelTitle": {
-        "description": "label_title"
-    }
+    "labelDesciption": "Description",
+    "labelIngredients": "Ingredients",
+
+    "errorTitle": "Title is required",
+    "errorDescription": "Description is required",
+
+    "titleRecipeShot": "Recipe Shot"
 }
