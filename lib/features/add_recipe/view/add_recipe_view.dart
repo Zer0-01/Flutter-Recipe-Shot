@@ -6,6 +6,7 @@ import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_elevated_button_widget.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_text_form_field_widget.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/widget/counter_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -66,6 +67,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                       const SizedBox(
                         height: 32.0,
                       ),
+                      CounterWidget(),
                       AddRecipeTextFormFieldWidget(
                         controller: vm.instructionsController,
                         labelText: 'Steps',
