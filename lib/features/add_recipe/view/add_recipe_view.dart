@@ -45,6 +45,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                 child: Form(
                   key: _formKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AddRecipeTextFormFieldWidget(
                         labelText: AppLocalizations.of(context)!.labelTitle,
@@ -66,15 +67,57 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                       AddRecipeTxtfieldWithButton(
                         labelText:
                             AppLocalizations.of(context)!.labelIngredients,
-                        onPressed: () {},
+                        controller: vm.ingredientsController,
+                        onPressed: () {
+                          vm.addIngredient();
+                        },
                       ),
+                      if (vm.ingredientsList.isNotEmpty)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: vm.ingredientsList.length,
+                          itemBuilder: (context, index) {
+                            return Align(
+                              alignment: Alignment.centerLeft,
+                              child: Chip(
+                                label: Text(vm.ingredientsList[index]),
+                                deleteIcon: const Icon(Icons.clear),
+                                onDeleted: () {
+                                  vm.removeIngredient(index);
+                                },
+                              ),
+                            );
+                          },
+                        ),
                       const SizedBox(
                         height: 32.0,
                       ),
                       AddRecipeTxtfieldWithButton(
                         labelText: AppLocalizations.of(context)!.labelSteps,
-                        onPressed: () {},
+                        controller: vm.instructionsController,
+                        onPressed: () {
+                          vm.addInstruction();
+                        },
                       ),
+                      if (vm.instructionsList.isNotEmpty)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: vm.instructionsList.length,
+                          itemBuilder: (context, index) {
+                            return Align(
+                              alignment: Alignment.centerLeft,
+                              child: Chip(
+                                label: Text(vm.instructionsList[index]),
+                                deleteIcon: const Icon(Icons.clear),
+                                onDeleted: () {
+                                  vm.removeInstruction(index);
+                                },
+                              ),
+                            );
+                          },
+                        ),
                       const SizedBox(height: 32.0),
                       GestureDetector(
                         onTap: () {

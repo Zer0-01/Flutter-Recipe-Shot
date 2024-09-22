@@ -18,6 +18,8 @@ class AddRecipeViewModel extends ChangeNotifier {
   final ImagePicker _imagePicker = ImagePicker();
   XFile? image;
   ApiResponse<Recipe>? recipeResponse;
+  List<String> ingredientsList = [];
+  List<String> instructionsList = [];
 
   Future<void> createRecipe(BuildContext context) async {
     try {
@@ -63,6 +65,32 @@ class AddRecipeViewModel extends ChangeNotifier {
 
   Future<void> getImage() async {
     image = await _imagePicker.pickImage(source: ImageSource.gallery);
+    notifyListeners();
+  }
+
+  void addIngredient() {
+    if (ingredientsController.text.isNotEmpty) {
+      ingredientsList.add(ingredientsController.text);
+      ingredientsController.clear();
+      notifyListeners();
+    }
+  }
+
+  void removeIngredient(int index) {
+    ingredientsList.removeAt(index);
+    notifyListeners();
+  }
+
+  void addInstruction() {
+    if (instructionsController.text.isNotEmpty) {
+      instructionsList.add(instructionsController.text);
+      instructionsController.clear();
+      notifyListeners();
+    }
+  }
+
+  void removeInstruction(int index) {
+    instructionsList.removeAt(index);
     notifyListeners();
   }
 
