@@ -19,5 +19,5 @@ class AppColors {
   static Color PURPLE_75 = const Color(0xFF7A1CAC);
   static const Color PURPLE_100 = Color(0xFF2E073F);
 
-  static Color WHITE = const Color(0xFFFFFFFF);
+  static const Color WHITE = Color(0xFFFFFFFF);
 }

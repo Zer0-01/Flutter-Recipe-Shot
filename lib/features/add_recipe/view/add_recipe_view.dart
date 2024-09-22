@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_elevated_button_widget.dart';
-import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_list_widget.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_text_form_field_widget.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_txtfield_with_button.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -63,24 +63,17 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                             : null,
                       ),
                       const SizedBox(height: 32.0),
-                      AddRecipeTextFormFieldWidget(
-                        controller: vm.ingredientsController,
+                      AddRecipeTxtfieldWithButton(
                         labelText:
                             AppLocalizations.of(context)!.labelIngredients,
+                        onPressed: () {},
                       ),
                       const SizedBox(
                         height: 32.0,
                       ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: ingredients.length + 1,
-                        itemBuilder: (context, index) {
-                          return const AddRecipeListWidget();
-                        },
-                      ),
-                      AddRecipeTextFormFieldWidget(
-                        controller: vm.instructionsController,
-                        labelText: 'Steps',
+                      AddRecipeTxtfieldWithButton(
+                        labelText: AppLocalizations.of(context)!.labelSteps,
+                        onPressed: () {},
                       ),
                       const SizedBox(height: 32.0),
                       GestureDetector(

@@ -2,9 +2,8 @@
     "labelTitle": "Title",
     "labelDesciption": "Description",
     "labelIngredients": "Ingredients",
-
+    "labelSteps": "Steps",
     "errorTitle": "Title is required",
     "errorDescription": "Description is required",
-
     "titleRecipeShot": "Recipe Shot"
 }

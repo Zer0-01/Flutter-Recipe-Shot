@@ -37,18 +37,18 @@ class AddRecipeTextFormFieldWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           maxLines: null,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             filled: true,
             fillColor: AppColors.WHITE,
-            border: const OutlineInputBorder(
+            border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               borderSide: BorderSide.none,
             ),
-            focusedBorder: const OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               borderSide: BorderSide.none,
             ),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               borderSide: BorderSide.none,
             ),
