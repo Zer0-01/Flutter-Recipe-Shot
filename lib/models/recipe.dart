@@ -2,8 +2,8 @@ class Recipe {
   final String id;
   final String title;
   final String description;
-  final String? ingredients;
-  final String? instructions;
+  final List<String>? ingredients;
+  final List<String>? instructions;
   final String? imageUrl;
 
   Recipe({
@@ -21,8 +21,12 @@ class Recipe {
       id: json['id'],
       title: json['title'],
       description: json['description'],
-      ingredients: json['ingredients'],
-      instructions: json['instructions'],
+      ingredients: json['ingredients'] != null
+          ? List<String>.from(json['ingredients'])
+          : null,
+      instructions: json['instructions'] != null
+          ? List<String>.from(json['instructions'])
+          : null,
       imageUrl: json['imageUrl'],
     );
   }
