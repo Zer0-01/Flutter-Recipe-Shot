@@ -10,6 +10,8 @@ class CardFeedWidget extends StatelessWidget {
   final String postDuration;
   final String description;
   final String imageUrl;
+  final void Function()? onTap;
+
   const CardFeedWidget({
     super.key,
     this.verticalMargin = 8.0,
@@ -21,68 +23,72 @@ class CardFeedWidget extends StatelessWidget {
     this.postDuration = '',
     this.description = '',
     this.imageUrl = '',
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(
-        vertical: verticalMargin,
-        horizontal: horizontalMargin,
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(padding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(profileImageUrl),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(username,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text(tweetHandle),
-                  ],
-                ),
-                const Spacer(),
-                Text(postDuration),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text(description),
-            if (imageUrl.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Image.network(imageUrl),
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        margin: EdgeInsets.symmetric(
+          vertical: verticalMargin,
+          horizontal: horizontalMargin,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(padding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(profileImageUrl),
+                  ),
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(username,
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      Text(tweetHandle),
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(postDuration),
+                ],
               ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.comment),
-                  onPressed: () {},
+              const SizedBox(height: 10),
+              Text(description),
+              if (imageUrl.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Image.network(imageUrl),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.repeat),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: const Icon(Icons.favorite_border),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: const Icon(Icons.share),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ],
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.comment),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.repeat),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.favorite_border),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.share),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
