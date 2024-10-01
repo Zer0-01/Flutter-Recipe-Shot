@@ -98,22 +98,22 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                                     Tab(text: 'Directions'),
                                   ],
                                 ),
-                                Expanded(
-                                  child: TabBarView(
-                                    children: [
-                                      Text(
-                                        vm.recipe.ingredients ??
-                                            'No ingredients',
-                                        style: const TextStyle(fontSize: 16),
-                                      ),
-                                      Text(
-                                        vm.recipe.instructions ??
-                                            'No instructions',
-                                        style: const TextStyle(fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // Expanded(
+                                //   child: TabBarView(
+                                //     children: [
+                                //       Text(
+                                //         vm.recipe.ingredients ??
+                                //             'No ingredients',
+                                //         style: const TextStyle(fontSize: 16),
+                                //       ),
+                                //       Text(
+                                //         vm.recipe.instructions ??
+                                //             'No instructions',
+                                //         style: const TextStyle(fontSize: 16),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),

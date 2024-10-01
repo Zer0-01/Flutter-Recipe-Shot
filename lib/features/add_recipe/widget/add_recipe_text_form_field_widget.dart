@@ -5,8 +5,15 @@ class AddRecipeTextFormFieldWidget extends StatelessWidget {
   final String labelText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  const AddRecipeTextFormFieldWidget(
-      {super.key, required this.labelText, this.controller, this.validator});
+  final Color cursorColor;
+
+  const AddRecipeTextFormFieldWidget({
+    super.key,
+    required this.labelText,
+    this.controller,
+    this.validator,
+    this.cursorColor = AppColors.PURPLE_100,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,31 +23,32 @@ class AddRecipeTextFormFieldWidget extends StatelessWidget {
         Text(
           labelText,
           style: const TextStyle(
-            color: Colors.grey,
+            color: AppColors.PURPLE_100,
             fontWeight: FontWeight.bold,
           ),
         ),
         const SizedBox(height: 8.0),
         TextFormField(
+          cursorColor: cursorColor,
           validator: validator,
           controller: controller,
-          style: TextStyle(
-            color: AppColors.darkGreenColor,
+          style: const TextStyle(
+            color: AppColors.PURPLE_100,
             fontWeight: FontWeight.bold,
           ),
           maxLines: null,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             filled: true,
-            fillColor: AppColors.yellow,
-            border: const OutlineInputBorder(
+            fillColor: AppColors.WHITE,
+            border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               borderSide: BorderSide.none,
             ),
-            focusedBorder: const OutlineInputBorder(
+            focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               borderSide: BorderSide.none,
             ),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               borderSide: BorderSide.none,
             ),

@@ -10,6 +10,7 @@ import 'package:flutter_recipe_shot/features/signIn/view/signin_view.dart';
 import 'package:flutter_recipe_shot/features/signup/view/signup_view.dart';
 import 'package:flutter_recipe_shot/features/splash/view/splash_view.dart';
 import 'package:flutter_recipe_shot/firebase_options.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +44,8 @@ class MyApp extends StatelessWidget {
             ),
       },
       title: 'Recipe Shot',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(primarySwatch: Colors.blue),
     );
   }

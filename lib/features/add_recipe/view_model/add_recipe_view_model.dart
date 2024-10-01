@@ -4,7 +4,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
-import 'package:flutter_recipe_shot/models/recipe.dart';
 import 'package:flutter_recipe_shot/models/recipe_update.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,7 +16,9 @@ class AddRecipeViewModel extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final ImagePicker _imagePicker = ImagePicker();
   XFile? image;
-  ApiResponse<Recipe>? recipeResponse;
+  ApiResponse<RecipeUpdate>? recipeResponse;
+  List<String> ingredientsList = [];
+  List<String> instructionsList = [];
 
   Future<void> createRecipe(BuildContext context) async {
     try {
@@ -36,8 +37,8 @@ class AddRecipeViewModel extends ChangeNotifier {
       RecipeUpdate recipeUpdate = RecipeUpdate(
         title: titleController.text,
         description: descriptionController.text,
-        ingredients: ingredientsController.text,
-        instructions: instructionsController.text,
+        ingredients: ingredientsList,
+        instructions: instructionsList,
         imageUrl: imageUrl,
         userUid: SharedPreferencesHelper.instance.getUserUid('USERUID') ?? '0',
       );
@@ -50,9 +51,9 @@ class AddRecipeViewModel extends ChangeNotifier {
 
       await recipeDocument.update({'id': documentId});
 
-      DocumentSnapshot recipeSnapshot = await recipeDocument.get();
-      Recipe recipe =
-          Recipe.fromJson(recipeSnapshot.data() as Map<String, dynamic>);
+      DocumentSnapshot recipeUpdateSnapshot = await recipeDocument.get();
+      RecipeUpdate recipe =
+          RecipeUpdate.fromJson(recipeUpdateSnapshot.data() as Map<String, dynamic>);
       _setRecipeResponse(ApiResponse.completed(recipe));
       _showSnackbar(context, 'Recipe successfully saved');
     } catch (error) {
@@ -66,8 +67,34 @@ class AddRecipeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addIngredient() {
+    if (ingredientsController.text.isNotEmpty) {
+      ingredientsList.add(ingredientsController.text);
+      ingredientsController.clear();
+      notifyListeners();
+    }
+  }
+
+  void removeIngredient(int index) {
+    ingredientsList.removeAt(index);
+    notifyListeners();
+  }
+
+  void addInstruction() {
+    if (instructionsController.text.isNotEmpty) {
+      instructionsList.add(instructionsController.text);
+      instructionsController.clear();
+      notifyListeners();
+    }
+  }
+
+  void removeInstruction(int index) {
+    instructionsList.removeAt(index);
+    notifyListeners();
+  }
+
   //private method
-  void _setRecipeResponse(ApiResponse<Recipe> response) {
+  void _setRecipeResponse(ApiResponse<RecipeUpdate> response) {
     print('Response: $response');
     recipeResponse = response;
     notifyListeners();

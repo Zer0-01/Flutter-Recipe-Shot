@@ -6,8 +6,10 @@ import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/view_model/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_elevated_button_widget.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_text_form_field_widget.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/widget/add_recipe_txtfield_with_button.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddRecipeView extends StatefulWidget {
   static const String id = 'add_recipe_view';
@@ -20,6 +22,7 @@ class AddRecipeView extends StatefulWidget {
 class _AddRecipeViewState extends State<AddRecipeView> {
   AddRecipeViewModel vm = AddRecipeViewModel();
   final _formKey = GlobalKey<FormState>();
+  List<String> ingredients = [];
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,10 @@ class _AddRecipeViewState extends State<AddRecipeView> {
       child: Consumer<AddRecipeViewModel>(
         builder: (context, value, child) {
           return Scaffold(
+            backgroundColor: AppColors.PURPLE_25,
             appBar: AppBar(
-              foregroundColor: AppColors.lightBlue,
+              foregroundColor: AppColors.PURPLE_100,
+              backgroundColor: Colors.transparent,
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -40,39 +45,80 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                 child: Form(
                   key: _formKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AddRecipeTextFormFieldWidget(
-                        labelText: 'Title',
+                        labelText: AppLocalizations.of(context)!.labelTitle,
                         controller: vm.titleController,
-                        validator: (value) =>
-                            value!.isEmpty ? 'Enter a title' : null,
+                        validator: (value) => value!.isEmpty
+                            ? AppLocalizations.of(context)!.errorTitle
+                            : null,
                       ),
-                      const SizedBox(
-                        height: 32.0,
-                      ),
+                      const SizedBox(height: 32.0),
                       AddRecipeTextFormFieldWidget(
-                        labelText: 'Description',
+                        labelText:
+                            AppLocalizations.of(context)!.labelDesciption,
                         controller: vm.descriptionController,
-                        validator: (value) =>
-                            value!.isEmpty ? 'Enter a Description' : null,
+                        validator: (value) => value!.isEmpty
+                            ? AppLocalizations.of(context)!.errorDescription
+                            : null,
                       ),
-                      const SizedBox(
-                        height: 32.0,
-                      ),
-                      AddRecipeTextFormFieldWidget(
+                      const SizedBox(height: 32.0),
+                      AddRecipeTxtfieldWithButton(
+                        labelText:
+                            AppLocalizations.of(context)!.labelIngredients,
                         controller: vm.ingredientsController,
-                        labelText: 'Ingredients',
+                        onPressed: () {
+                          vm.addIngredient();
+                        },
                       ),
+                      if (vm.ingredientsList.isNotEmpty)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: vm.ingredientsList.length,
+                          itemBuilder: (context, index) {
+                            return Align(
+                              alignment: Alignment.centerLeft,
+                              child: Chip(
+                                label: Text(vm.ingredientsList[index]),
+                                deleteIcon: const Icon(Icons.clear),
+                                onDeleted: () {
+                                  vm.removeIngredient(index);
+                                },
+                              ),
+                            );
+                          },
+                        ),
                       const SizedBox(
                         height: 32.0,
                       ),
-                      AddRecipeTextFormFieldWidget(
+                      AddRecipeTxtfieldWithButton(
+                        labelText: AppLocalizations.of(context)!.labelSteps,
                         controller: vm.instructionsController,
-                        labelText: 'Steps',
+                        onPressed: () {
+                          vm.addInstruction();
+                        },
                       ),
-                      const SizedBox(
-                        height: 32.0,
-                      ),
+                      if (vm.instructionsList.isNotEmpty)
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: vm.instructionsList.length,
+                          itemBuilder: (context, index) {
+                            return Align(
+                              alignment: Alignment.centerLeft,
+                              child: Chip(
+                                label: Text(vm.instructionsList[index]),
+                                deleteIcon: const Icon(Icons.clear),
+                                onDeleted: () {
+                                  vm.removeInstruction(index);
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      const SizedBox(height: 32.0),
                       GestureDetector(
                         onTap: () {
                           vm.getImage();
@@ -99,9 +145,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                               )),
                         ),
                       ),
-                      const SizedBox(
-                        height: 32.0,
-                      ),
+                      const SizedBox(height: 32.0),
                       AddRecipeElevatedButtonWidget(
                         buttonText: 'Save',
                         onPressed:

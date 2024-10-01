@@ -5,6 +5,7 @@ import 'package:flutter_recipe_shot/features/feed/view/feed_view.dart';
 import 'package:flutter_recipe_shot/features/main/view_model/main_view_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainView extends StatefulWidget {
   static const String id = 'main_view';
@@ -30,9 +31,11 @@ class _MainViewState extends State<MainView> {
     return ChangeNotifierProvider(
       create: (context) => vm,
       child: Scaffold(
+        backgroundColor: AppColors.PURPLE_25,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           leading: const Icon(Icons.person),
-          title: const Text('Recipe Shot'),
+          title: Text(AppLocalizations.of(context)!.titleRecipeShot),
           actions: const [
             Padding(
               padding: EdgeInsets.all(8.0),
@@ -48,35 +51,36 @@ class _MainViewState extends State<MainView> {
             });
           },
           selectedIndex: _currentPageIndex,
-          destinations: [
+          destinations: const [
             NavigationDestination(
-              icon: const Icon(
+              icon: Icon(
                 Icons.home_outlined,
               ),
-              selectedIcon: Icon(Icons.home_sharp, color: AppColors.lightBlue),
+              selectedIcon: Icon(Icons.home_sharp, color: AppColors.PURPLE_100),
               label: 'Home',
             ),
             NavigationDestination(
-              icon: const Icon(
+              icon: Icon(
                 Icons.search_outlined,
               ),
               selectedIcon:
-                  Icon(Icons.search_sharp, color: AppColors.lightBlue),
+                  Icon(Icons.search_sharp, color: AppColors.PURPLE_100),
               label: 'Search',
             ),
             NavigationDestination(
-              icon: const Icon(
+              icon: Icon(
                 Icons.notifications_outlined,
               ),
               selectedIcon:
-                  Icon(Icons.notifications_sharp, color: AppColors.lightBlue),
+                  Icon(Icons.notifications_sharp, color: AppColors.PURPLE_100),
               label: 'Notifications',
             ),
             NavigationDestination(
-              icon: const Icon(
+              icon: Icon(
                 Icons.email_outlined,
               ),
-              selectedIcon: Icon(Icons.email_sharp, color: AppColors.lightBlue),
+              selectedIcon:
+                  Icon(Icons.email_sharp, color: AppColors.PURPLE_100),
               label: 'Message',
             ),
           ],
@@ -113,8 +117,8 @@ class _MainViewState extends State<MainView> {
           onPressed: () {
             Navigator.pushNamed(context, AddRecipeView.id);
           },
-          backgroundColor: AppColors.lightBlue,
-          foregroundColor: Colors.white,
+          backgroundColor: AppColors.PURPLE_100,
+          foregroundColor: AppColors.WHITE,
           child: const Icon(Icons.add),
         ),
       ),
