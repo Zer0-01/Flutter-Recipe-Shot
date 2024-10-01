@@ -24,8 +24,6 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider<RecipeDetailsViewModel>(
       create: (context) => vm,
       child: Consumer<RecipeDetailsViewModel>(
@@ -41,82 +39,55 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
               return const Placeholder();
             case ApiStatus.COMPLETED:
               return Scaffold(
-                  backgroundColor: AppColors.pastelLightGreenColor,
+                  backgroundColor: AppColors.PURPLE_25,
                   appBar: AppBar(
-                    backgroundColor: AppColors.pastelLightGreenColor,
+                    backgroundColor: Colors.transparent,
                   ),
                   body: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          vm.recipe.title,
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.darkGreenColor,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        SizedBox(
-                          width: screenWidth * 0.9,
-                          height: screenHeight * 0.3,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image.network(
-                              vm.recipe.imageUrl ??
-                                  'https://picsum.photos/250?image=1',
-                              fit: BoxFit.cover,
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              backgroundColor: Colors.red,
                             ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                vm.recipe.id,
+                                style: const TextStyle(
+                                    color: AppColors.PURPLE_100,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Text(
+                            vm.recipe.title,
+                            style: const TextStyle(
+                                color: AppColors.PURPLE_100, fontSize: 20),
                           ),
                         ),
-                        const SizedBox(
-                          height: 24,
+                        Text(vm.recipe.description),
+                        const Text("Ingredients:"),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: vm.recipe.ingredients?.length,
+                          itemBuilder: (context, index) {
+                            return Text("${index + 1}.\t\t${vm.recipe.ingredients![index]}");
+                          },
                         ),
-                        Text(
-                          vm.recipe.description,
-                          style: const TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        DefaultTabController(
-                          length: 2,
-                          child: Expanded(
-                            child: Column(
-                              children: [
-                                TabBar(
-                                  indicatorColor: AppColors.darkGreenColor,
-                                  labelColor: AppColors.darkGreenColor,
-                                  tabs: const [
-                                    Tab(text: 'Ingredients'),
-                                    Tab(text: 'Directions'),
-                                  ],
-                                ),
-                                // Expanded(
-                                //   child: TabBarView(
-                                //     children: [
-                                //       Text(
-                                //         vm.recipe.ingredients ??
-                                //             'No ingredients',
-                                //         style: const TextStyle(fontSize: 16),
-                                //       ),
-                                //       Text(
-                                //         vm.recipe.instructions ??
-                                //             'No instructions',
-                                //         style: const TextStyle(fontSize: 16),
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
+                        const Text("Instructions:"),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: vm.recipe.instructions?.length,
+                          itemBuilder: (context, index) {
+                            return Text("${index + 1}.\t\t${vm.recipe.instructions![index]}");
+                          },
                         ),
                       ],
                     ),
