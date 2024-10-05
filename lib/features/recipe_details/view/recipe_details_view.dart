@@ -44,12 +44,12 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                   appBar: AppBar(
                     backgroundColor: Colors.transparent,
                   ),
-                  body: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                  body: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
                           children: [
                             const CircleAvatar(
                               backgroundColor: Colors.red,
@@ -65,18 +65,22 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                             )
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              vm.recipe.imageUrl ??
-                                  'https://www.its.ac.id/tmesin/wp-content/uploads/sites/22/2022/07/no-image.png',
-                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 8.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            vm.recipe.imageUrl ??
+                                'https://www.its.ac.id/tmesin/wp-content/uploads/sites/22/2022/07/no-image.png',
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.center,
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
                           child: Text(
                             vm.recipe.title,
                             style: const TextStyle(
@@ -85,63 +89,85 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: SegmentedButton(
-                            style: SegmentedButton.styleFrom(
-                                selectedBackgroundColor: AppColors.PURPLE_100,
-                                selectedForegroundColor: AppColors.PURPLE_25),
-                            showSelectedIcon: false,
-                            segments: const [
-                              ButtonSegment(
-                                  value: "details",
-                                  label: Text("Details",
-                                      style: TextStyle(fontSize: 12))),
-                              ButtonSegment(
-                                label: Text(
-                                  "Ingredients",
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                                value: "ingredients",
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16.0))),
+                          width: MediaQuery.sizeOf(context).width,
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              // Segmented Button
+                              SegmentedButton(
+                                style: SegmentedButton.styleFrom(
+                                    selectedBackgroundColor:
+                                        AppColors.PURPLE_100,
+                                    selectedForegroundColor:
+                                        AppColors.PURPLE_25),
+                                showSelectedIcon: false,
+                                segments: const [
+                                  ButtonSegment(
+                                      value: "details",
+                                      label: Text("Details",
+                                          style: TextStyle(fontSize: 12))),
+                                  ButtonSegment(
+                                    label: Text(
+                                      "Ingredients",
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                    value: "ingredients",
+                                  ),
+                                  ButtonSegment(
+                                      value: "instructions",
+                                      label: Text(
+                                        "Instructions",
+                                        style: TextStyle(fontSize: 12),
+                                      )),
+                                ],
+                                selected: {selectedSegment},
+                                onSelectionChanged: (p0) {
+                                  setState(() {
+                                    selectedSegment = p0.first;
+                                  });
+                                },
                               ),
-                              ButtonSegment(
-                                  value: "instructions",
-                                  label: Text(
-                                    "Instructions",
-                                    style: TextStyle(fontSize: 12),
-                                  )),
+                              const SizedBox(height: 8.0), // Optional spacing
+                              // Display selected content
+                              selectedSegment == 'details'
+                                  ? Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(vm.recipe.description))
+                                  : selectedSegment == 'ingredients'
+                                      ? ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemCount:
+                                              vm.recipe.ingredients?.length,
+                                          itemBuilder: (context, index) {
+                                            return Text(
+                                                "${index + 1}. ${vm.recipe.ingredients![index]}");
+                                          },
+                                        )
+                                      : ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemCount:
+                                              vm.recipe.instructions?.length,
+                                          itemBuilder: (context, index) {
+                                            return Text(
+                                                "${index + 1}. ${vm.recipe.instructions![index]}");
+                                          },
+                                        ),
                             ],
-                            selected: {selectedSegment},
-                            onSelectionChanged: (p0) {
-                              setState(() {
-                                selectedSegment = p0.first;
-                              });
-                            },
                           ),
                         ),
-                        Expanded(
-                          child: selectedSegment == 'details'
-                              ? Text(vm.recipe.description)
-                              : selectedSegment == 'ingredients'
-                                  ? ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: vm.recipe.ingredients?.length,
-                                      itemBuilder: (context, index) {
-                                        return Text(
-                                            "${index + 1}. ${vm.recipe.ingredients![index]}");
-                                      },
-                                    )
-                                  : ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: vm.recipe.instructions?.length,
-                                      itemBuilder: (context, index) {
-                                        return Text(
-                                            "${index + 1}. ${vm.recipe.instructions![index]}");
-                                      },
-                                    ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ));
             default:
           }
