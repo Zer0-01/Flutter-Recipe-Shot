@@ -16,6 +16,7 @@ class RecipeDetailsView extends StatefulWidget {
 
 class _RecipeDetailsViewState extends State<RecipeDetailsView> {
   RecipeDetailsViewModel vm = RecipeDetailsViewModel();
+  String selectedSegment = "ingredients";
   @override
   void initState() {
     super.initState();
@@ -65,29 +66,79 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              vm.recipe.imageUrl ??
+                                  'https://www.its.ac.id/tmesin/wp-content/uploads/sites/22/2022/07/no-image.png',
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.center,
                           child: Text(
                             vm.recipe.title,
                             style: const TextStyle(
-                                color: AppColors.PURPLE_100, fontSize: 20),
+                                color: AppColors.PURPLE_100,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Text(vm.recipe.description),
-                        const Text("Ingredients:"),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: vm.recipe.ingredients?.length,
-                          itemBuilder: (context, index) {
-                            return Text("${index + 1}.\t\t${vm.recipe.ingredients![index]}");
-                          },
+                        Align(
+                          alignment: Alignment.center,
+                          child: SegmentedButton(
+                            style: SegmentedButton.styleFrom(
+                                selectedBackgroundColor: AppColors.PURPLE_100,
+                                selectedForegroundColor: AppColors.PURPLE_25),
+                            showSelectedIcon: false,
+                            segments: const [
+                              ButtonSegment(
+                                  value: "details",
+                                  label: Text("Details",
+                                      style: TextStyle(fontSize: 12))),
+                              ButtonSegment(
+                                label: Text(
+                                  "Ingredients",
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                value: "ingredients",
+                              ),
+                              ButtonSegment(
+                                  value: "instructions",
+                                  label: Text(
+                                    "Instructions",
+                                    style: TextStyle(fontSize: 12),
+                                  )),
+                            ],
+                            selected: {selectedSegment},
+                            onSelectionChanged: (p0) {
+                              setState(() {
+                                selectedSegment = p0.first;
+                              });
+                            },
+                          ),
                         ),
-                        const Text("Instructions:"),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: vm.recipe.instructions?.length,
-                          itemBuilder: (context, index) {
-                            return Text("${index + 1}.\t\t${vm.recipe.instructions![index]}");
-                          },
+                        Expanded(
+                          child: selectedSegment == 'details'
+                              ? Text(vm.recipe.description)
+                              : selectedSegment == 'ingredients'
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: vm.recipe.ingredients?.length,
+                                      itemBuilder: (context, index) {
+                                        return Text(
+                                            "${index + 1}. ${vm.recipe.ingredients![index]}");
+                                      },
+                                    )
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: vm.recipe.instructions?.length,
+                                      itemBuilder: (context, index) {
+                                        return Text(
+                                            "${index + 1}. ${vm.recipe.instructions![index]}");
+                                      },
+                                    ),
                         ),
                       ],
                     ),
