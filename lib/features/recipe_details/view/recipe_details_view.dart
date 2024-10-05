@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/recipe_details/view_model/recipe_details_view_model.dart';
+import 'package:flutter_recipe_shot/features/recipe_details/widgets/recipe_details_image_widget.dart';
+import 'package:flutter_recipe_shot/features/recipe_details/widgets/recipe_details_title_widget.dart';
+import 'package:flutter_recipe_shot/features/recipe_details/widgets/recipe_details_user_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -47,49 +50,9 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                   body: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const CircleAvatar(
-                              backgroundColor: Colors.red,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                vm.recipe.id,
-                                style: const TextStyle(
-                                    color: AppColors.PURPLE_100,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            vm.recipe.imageUrl ??
-                                'https://www.its.ac.id/tmesin/wp-content/uploads/sites/22/2022/07/no-image.png',
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Text(
-                            vm.recipe.title,
-                            style: const TextStyle(
-                                color: AppColors.PURPLE_100,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
+                      RecipeDetailsUserWidget(userId: vm.recipe.id),
+                      RecipeDetailsImageWidget(imageUrl: vm.recipe.imageUrl),
+                      RecipeDetailsTitleWidget(recipeTitle: vm.recipe.title),
                       Expanded(
                         child: Container(
                           decoration: const BoxDecoration(
@@ -100,7 +63,6 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: [
-                              // Segmented Button
                               SegmentedButton(
                                 style: SegmentedButton.styleFrom(
                                     selectedBackgroundColor:
@@ -134,8 +96,7 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                                   });
                                 },
                               ),
-                              const SizedBox(height: 8.0), // Optional spacing
-                              // Display selected content
+                              const SizedBox(height: 8.0),
                               selectedSegment == 'details'
                                   ? Align(
                                       alignment: Alignment.centerLeft,
