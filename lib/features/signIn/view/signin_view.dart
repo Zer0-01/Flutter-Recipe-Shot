@@ -39,10 +39,9 @@ class _SigninViewState extends State<SigninView> {
               Text(
                 AppLocalizations.of(context)!.welcome_back,
                 style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.normal,
-                  color: AppColors.whiteColor
-                ),
+                    fontSize: 32,
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.whiteColor),
               ),
               const SizedBox(
                 height: 40,
@@ -82,6 +81,41 @@ class _SigninViewState extends State<SigninView> {
                     vm.signIn(context);
                   }
                 },
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      height: 1,
+                      color: AppColors.WHITE,
+                      width: 200,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        AppLocalizations.of(context)!.or,
+                        style: const TextStyle(
+                            fontSize: 12, color: AppColors.WHITE),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      height: 1,
+                      color: AppColors.WHITE,
+                      width: 200,
+                    ),
+                  ),
+                ],
               ),
               SignUpNavigatorWidget(
                 onPressed: () {
