@@ -6,5 +6,6 @@
     "errorTitle": "Title is required",
     "errorDescription": "Description is required",
     "titleRecipeShot": "Recipe Shot",
-    "welcome_back": "Welcome back!"
+    "welcome_back": "Welcome back!",
+    "login": "Login"
 }
