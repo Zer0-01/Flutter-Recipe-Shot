@@ -5,6 +5,7 @@ import 'package:flutter_recipe_shot/features/signin/view/widget/signin_text_form
 import 'package:flutter_recipe_shot/features/signin/view_model/signin_view_model.dart';
 import 'package:flutter_recipe_shot/features/signup/view/signup_view.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SigninView extends StatefulWidget {
   static const String id = 'signin_view';
@@ -32,8 +33,16 @@ class _SigninViewState extends State<SigninView> {
             children: [
               const Image(
                 image: AssetImage('lib/assets/logo-recipe.png'),
-                height: 100,
-                width: 100,
+                height: 160,
+                width: 146,
+              ),
+              Text(
+                AppLocalizations.of(context)!.welcome_back,
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.normal,
+                  color: AppColors.whiteColor
+                ),
               ),
               const SizedBox(
                 height: 40,

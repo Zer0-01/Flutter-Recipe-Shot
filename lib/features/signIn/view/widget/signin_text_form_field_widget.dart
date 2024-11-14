@@ -23,22 +23,42 @@ class SigninTextFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: AppColors.WHITE,
       controller: controller,
       obscureText: obscureText,
+      style: const TextStyle(
+        color: AppColors.WHITE,
+        fontSize: 16,
+      ),
       decoration: InputDecoration(
-        hintText: hintText,
-        filled: true,
-        fillColor: AppColors.whiteColor,
-        prefixIcon: Icon(leadingIcon),
+        labelText: hintText,
+        labelStyle: const TextStyle(
+          color: AppColors.WHITE,
+        ),
+        errorStyle: TextStyle(
+          color: Colors.red
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: AppColors.WHITE),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: AppColors.WHITE),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.red),
+        ),
         suffixIcon: IconButton(
+          color: AppColors.WHITE,
           icon: Icon(trailingIcon),
           onPressed: onPressed,
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide.none,
-        ),
-        errorStyle: TextStyle(color: AppColors.whiteColor),
       ),
       validator: validator,
     );
