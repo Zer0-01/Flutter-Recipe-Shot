@@ -35,7 +35,7 @@ class SigninTextFormFieldWidget extends StatelessWidget {
         labelStyle: const TextStyle(
           color: AppColors.WHITE,
         ),
-        errorStyle: TextStyle(
+        errorStyle: const TextStyle(
           color: Colors.red
         ),
         enabledBorder: OutlineInputBorder(
