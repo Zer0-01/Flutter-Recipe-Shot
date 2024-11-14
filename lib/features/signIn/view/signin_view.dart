@@ -6,6 +6,7 @@ import 'package:flutter_recipe_shot/features/signin/view_model/signin_view_model
 import 'package:flutter_recipe_shot/features/signup/view/signup_view.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SigninView extends StatefulWidget {
   static const String id = 'signin_view';
@@ -19,6 +20,9 @@ class _SigninViewState extends State<SigninView> {
   final SigninViewModel vm = SigninViewModel();
   final _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
+  final String icFacebook = 'lib/assets/ic_facebook.svg';
+  final String icGoogle = 'lib/assets/ic_google.svg';
+  final String icApple = 'lib/assets/ic_apple.svg';
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +121,57 @@ class _SigninViewState extends State<SigninView> {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 50,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: AppColors.WHITE),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SvgPicture.asset(icFacebook),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: AppColors.WHITE),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SvgPicture.asset(icGoogle),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 26,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: AppColors.WHITE),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SvgPicture.asset(icApple),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
               SignUpNavigatorWidget(
                 onPressed: () {
                   Navigator.push(

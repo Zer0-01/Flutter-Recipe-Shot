@@ -13,7 +13,7 @@ class SignUpNavigatorWidget extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Text(
-          'Not Sign Up Yet, Click Here',
+          'Dont have an account? Sign Up',
           style: TextStyle(color: AppColors.whiteColor),
         ));
   }
