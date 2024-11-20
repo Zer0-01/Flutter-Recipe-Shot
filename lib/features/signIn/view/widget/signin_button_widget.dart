@@ -20,7 +20,7 @@ class SignInButtonWidget extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
         ),
         child: Text(
-          AppLocalizations.of(context)!.login,
+          AppLocalizations.of(context)!.sign_in_login,
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),

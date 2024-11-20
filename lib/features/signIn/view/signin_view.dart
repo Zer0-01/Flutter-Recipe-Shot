@@ -54,7 +54,7 @@ class _SigninViewState extends State<SigninView> {
                           width: 146,
                         ),
                         Text(
-                          AppLocalizations.of(context)!.welcome_back,
+                          AppLocalizations.of(context)!.sign_in_welcome_back,
                           style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.normal,
@@ -66,10 +66,12 @@ class _SigninViewState extends State<SigninView> {
                         SigninTextFormFieldWidget(
                           controller: vm.emailController,
                           obscureText: false,
-                          hintText: 'Email',
+                          hintText: AppLocalizations.of(context)!.sign_in_email,
                           leadingIcon: Icons.email,
-                          validator: (value) =>
-                              value!.isEmpty ? 'Enter an email' : null,
+                          validator: (value) => value!.isEmpty
+                              ? AppLocalizations.of(context)!
+                                  .sign_in_enter_an_email
+                              : null,
                         ),
                         const SizedBox(
                           height: 32,
@@ -86,9 +88,11 @@ class _SigninViewState extends State<SigninView> {
                               _isObscure = !_isObscure;
                             });
                           },
-                          hintText: "Password",
+                          hintText:
+                              AppLocalizations.of(context)!.sign_in_password,
                           validator: (value) => value!.length < 6
-                              ? "Enter a password 6+ characters long"
+                              ? AppLocalizations.of(context)!
+                                  .sign_in_enter_a_password
                               : null,
                         ),
                         const SizedBox(
@@ -120,7 +124,7 @@ class _SigninViewState extends State<SigninView> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10.0),
                                 child: Text(
-                                  AppLocalizations.of(context)!.or,
+                                  AppLocalizations.of(context)!.sign_in_or,
                                   style: const TextStyle(
                                       fontSize: 12, color: AppColors.WHITE),
                                   textAlign: TextAlign.center,
