@@ -99,11 +99,13 @@ class _SigninViewState extends State<SigninView> {
                           height: 32,
                         ),
                         SignInButtonWidget(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              vm.signIn(context);
-                            }
-                          },
+                          onPressed: vm.isLoading
+                              ? null
+                              : () {
+                                  if (_formKey.currentState!.validate()) {
+                                    vm.signIn(context);
+                                  }
+                                },
                         ),
                         const SizedBox(
                           height: 50,

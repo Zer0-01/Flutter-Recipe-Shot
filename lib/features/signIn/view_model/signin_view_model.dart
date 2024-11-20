@@ -22,9 +22,7 @@ class SigninViewModel extends ChangeNotifier {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
-
       String userUid = userCredential.user!.uid;
-
       await SharedPreferencesHelper.instance.setUserUid("USERUID", userUid);
     } catch (e) {
       print(e.toString());
