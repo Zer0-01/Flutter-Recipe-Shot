@@ -12,5 +12,8 @@
     "sign_in_enter_an_email": "Enter an email",
     "sign_in_enter_a_password": "Enter a password 6+ characters long",
     "sign_in_login": "Login",
-    "sign_in_or": "Or"
+    "sign_in_or": "Or",
+    "sign_up_create_account": "Create account",
+    "sign_up_already_have_an_account": "Already have an account?",
+    "sign_up_login": "Login"
 }
