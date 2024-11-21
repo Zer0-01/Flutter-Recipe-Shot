@@ -17,7 +17,7 @@ class SignUpButtonWidget extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: AppColors.lightGreenColor,
+          backgroundColor: AppColors.PURPLE_75,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
         ),

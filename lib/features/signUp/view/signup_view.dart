@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/features/signup/view/widget/signup_elevated_button_widget.dart';
-import 'package:flutter_recipe_shot/features/signup/view/widget/signup_text_form_field_widget.dart';
 import 'package:flutter_recipe_shot/features/signup/view_model/signup_view_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:flutter_recipe_shot/res/widgets/sized_box_widget.dart';
-import 'package:flutter_recipe_shot/res/widgets/text_widget.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -19,7 +18,10 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   SignupViewModel vm = SignupViewModel();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _isObscure = true;
+  final String icHuman = 'lib/assets/ic_human.svg';
+  final String icMail = 'lib/assets/ic_mail.svg';
+  final String icCalendar = 'lib/assets/ic_calendar.svg';
+  final String icLock = 'lib/assets/ic_lock.svg';
 
   @override
   Widget build(BuildContext context) {
@@ -56,56 +58,104 @@ class _SignupViewState extends State<SignupView> {
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          SizedBox(height: 12,),
+                          const SizedBox(
+                            height: 12,
+                          ),
                           Align(
                             alignment: Alignment.center,
                             child: Text(
-                              AppLocalizations.of(context)!.sign_up_already_have_an_account,
-                              style: TextStyle(
-                                color: AppColors.BASE_WHITE,
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal
-                              ),),
-                          ),
-                          Container(
-                            child: Column(
-                              children: [],
+                              AppLocalizations.of(context)!
+                                  .sign_up_already_have_an_account,
+                              style: const TextStyle(
+                                  color: AppColors.BASE_WHITE,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal),
                             ),
                           ),
-                          SignupTextFormFieldWidget(
-                            hintText: 'Name',
-                            validator: (value) =>
-                                value!.isEmpty ? 'Enter a name' : null,
-                            controller: vm.nameController,
-                            obscureText: false,
-                            leadingIcon: Icons.person,
+                          const SizedBox(
+                            height: 32,
                           ),
-                          SizedBoxWidget.h32,
-                          SignupTextFormFieldWidget(
-                            hintText: 'Email',
-                            validator: (value) =>
-                                value!.isEmpty ? 'Enter an email' : null,
-                            controller: vm.emailController,
-                            leadingIcon: Icons.email,
-                            obscureText: false,
-                          ),
-                          SizedBoxWidget.h32,
-                          SignupTextFormFieldWidget(
-                            hintText: 'Password',
-                            validator: (value) => value!.length < 6
-                                ? "Enter a password 6+ characters long"
-                                : null,
-                            controller: vm.passwordController,
-                            leadingIcon: Icons.lock,
-                            trailingIcon: _isObscure
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            obscureText: _isObscure,
-                            onPressed: () {
-                              setState(() {
-                                _isObscure = !_isObscure;
-                              });
-                            },
+                          Container(
+                            decoration: const BoxDecoration(
+                                color: AppColors.BASE_WHITE,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 14.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(icHuman,
+                                          height: 16, width: 16, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
+                                      const SizedBox(
+                                        width: 12,
+                                      ),
+                                      const Expanded(
+                                          child: TextField(
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                                const Divider(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 14.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(icMail, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
+                                      const SizedBox(
+                                        width: 12,
+                                      ),
+                                      const Expanded(
+                                          child: TextField(
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                                const Divider(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 14.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(icCalendar, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
+                                      const SizedBox(
+                                        width: 12,
+                                      ),
+                                      const Expanded(
+                                          child: TextField(
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                                const Divider(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 14.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(icLock, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
+                                      const SizedBox(
+                                        width: 12,
+                                      ),
+                                      const Expanded(
+                                          child: TextField(
+                                        decoration: InputDecoration(
+                                            border: InputBorder.none),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBoxWidget.h32,
                           SignUpButtonWidget(

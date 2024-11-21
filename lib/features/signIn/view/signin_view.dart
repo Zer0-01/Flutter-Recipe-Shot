@@ -32,7 +32,7 @@ class _SigninViewState extends State<SigninView> {
       create: (context) => vm,
       child: Consumer<SigninViewModel>(builder: (context, vm, child) {
         return Scaffold(
-          backgroundColor: AppColors.darkGreenColor,
+          backgroundColor: AppColors.BASE_BLACK,
           body: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
