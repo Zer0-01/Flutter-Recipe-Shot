@@ -48,11 +48,6 @@ class _SigninViewState extends State<SigninView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image(
-                          image: AssetImage(icLogo),
-                          height: 160,
-                          width: 146,
-                        ),
                         Text(
                           AppLocalizations.of(context)!.sign_in_welcome_back,
                           style: TextStyle(
