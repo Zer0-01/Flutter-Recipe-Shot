@@ -40,134 +40,151 @@ class _SignupViewState extends State<SignupView> {
               create: (context) => vm,
               child: Consumer<SignupViewModel>(
                 builder: (context, vm, child) {
-                  return Form(
-                    key: _formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              AppLocalizations.of(context)!
-                                  .sign_up_create_account,
-                              style: TextStyle(
-                                  color: AppColors.whiteColor,
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.bold),
+                  return SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                AppLocalizations.of(context)!
+                                    .sign_up_create_account,
+                                style: TextStyle(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              AppLocalizations.of(context)!
-                                  .sign_up_already_have_an_account,
-                              style: const TextStyle(
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                AppLocalizations.of(context)!
+                                    .sign_up_already_have_an_account,
+                                style: const TextStyle(
+                                    color: AppColors.BASE_WHITE,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
                                   color: AppColors.BASE_WHITE,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 14.0),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(icHuman,
+                                            height: 16,
+                                            width: 16,
+                                            colorFilter: ColorFilter.mode(
+                                                AppColors.PURPLE_75,
+                                                BlendMode.srcIn)),
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        const Expanded(
+                                            child: TextField(
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
+                                  const Divider(),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 14.0),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(icMail,
+                                            colorFilter: ColorFilter.mode(
+                                                AppColors.PURPLE_75,
+                                                BlendMode.srcIn)),
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        Expanded(
+                                            child: TextField(
+                                          controller: vm.emailController,
+                                          decoration: const InputDecoration(
+                                              border: InputBorder.none),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
+                                  const Divider(),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 14.0),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(icCalendar,
+                                            colorFilter: ColorFilter.mode(
+                                                AppColors.PURPLE_75,
+                                                BlendMode.srcIn)),
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        const Expanded(
+                                            child: TextField(
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
+                                  const Divider(),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 14.0),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(icLock,
+                                            colorFilter: ColorFilter.mode(
+                                                AppColors.PURPLE_75,
+                                                BlendMode.srcIn)),
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        Expanded(
+                                            child: TextField(
+                                          controller: vm.passwordController,
+                                          decoration: const InputDecoration(
+                                              border: InputBorder.none),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(
-                                color: AppColors.BASE_WHITE,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14.0),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(icHuman,
-                                          height: 16, width: 16, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
-                                      const SizedBox(
-                                        width: 12,
-                                      ),
-                                      const Expanded(
-                                          child: TextField(
-                                        decoration: InputDecoration(
-                                            border: InputBorder.none),
-                                      )),
-                                    ],
-                                  ),
-                                ),
-                                const Divider(),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14.0),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(icMail, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
-                                      const SizedBox(
-                                        width: 12,
-                                      ),
-                                      const Expanded(
-                                          child: TextField(
-                                        decoration: InputDecoration(
-                                            border: InputBorder.none),
-                                      )),
-                                    ],
-                                  ),
-                                ),
-                                const Divider(),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14.0),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(icCalendar, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
-                                      const SizedBox(
-                                        width: 12,
-                                      ),
-                                      const Expanded(
-                                          child: TextField(
-                                        decoration: InputDecoration(
-                                            border: InputBorder.none),
-                                      )),
-                                    ],
-                                  ),
-                                ),
-                                const Divider(),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14.0),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(icLock, colorFilter: ColorFilter.mode(AppColors.PURPLE_75, BlendMode.srcIn)),
-                                      const SizedBox(
-                                        width: 12,
-                                      ),
-                                      const Expanded(
-                                          child: TextField(
-                                        decoration: InputDecoration(
-                                            border: InputBorder.none),
-                                      )),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBoxWidget.h32,
-                          SignUpButtonWidget(
-                            onPressed: vm.isLoading
-                                ? null
-                                : () async {
-                                    if (_formKey.currentState!.validate()) {
-                                      vm.signUp(context);
-                                    }
-                                  },
-                          )
-                        ],
+                            SizedBoxWidget.h32,
+                            SignUpButtonWidget(
+                              onPressed: vm.isLoading
+                                  ? null
+                                  : () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        vm.signUp(context);
+                                      }
+                                    },
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );

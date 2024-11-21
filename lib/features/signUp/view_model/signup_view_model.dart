@@ -4,15 +4,24 @@ import 'package:flutter_recipe_shot/features/signin/view/signin_view.dart';
 
 class SignupViewModel extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  bool isLoading = false;
+
+  bool _isLoading = false;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  bool get isLoading => _isLoading;
+  TextEditingController get nameController => _nameController;
+  TextEditingController get emailController => _emailController;
+  TextEditingController get passwordController => _passwordController;
+
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
 
   Future<void> signUp(BuildContext context) async {
     isLoading = true;
-    notifyListeners();
-
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
@@ -31,7 +40,6 @@ class SignupViewModel extends ChangeNotifier {
     }
 
     isLoading = false;
-    notifyListeners();
   }
 
   void showSnackbar(BuildContext context, String message) {
