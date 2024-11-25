@@ -97,9 +97,10 @@ class _SignupViewState extends State<SignupView> {
                                         const SizedBox(
                                           width: 12,
                                         ),
-                                        const Expanded(
+                                        Expanded(
                                             child: TextField(
-                                          decoration: InputDecoration(
+                                          controller: vm.nameController,
+                                          decoration: const InputDecoration(
                                               border: InputBorder.none),
                                         )),
                                       ],

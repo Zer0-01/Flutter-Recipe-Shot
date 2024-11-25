@@ -37,5 +37,7 @@
     "sign_up_success": "Sign up successful",
     "@sign_up_success": {},
     "sign_up_failed": "Sign up failed",
-    "@sign_up_failed": {}
+    "@sign_up_failed": {},
+    "sign_up_sign_up": "Sign up",
+    "@sign_up_sign_up": {}
 }

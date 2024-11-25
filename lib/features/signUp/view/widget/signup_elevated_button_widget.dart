@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpButtonWidget extends StatelessWidget {
   final void Function()? onPressed;
@@ -21,7 +22,7 @@ class SignUpButtonWidget extends StatelessWidget {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
         ),
-        child: const Text('Sign Up'),
+        child: Text(AppLocalizations.of(context)!.sign_up_sign_up),
       ),
     );
   }
