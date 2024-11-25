@@ -33,5 +33,9 @@
     "sign_up_already_have_an_account": "Already have an account?",
     "@sign_up_already_have_an_account": {},
     "sign_up_login": "Login",
-    "@sign_up_login": {}
+    "@sign_up_login": {},
+    "sign_up_success": "Sign up successful",
+    "@sign_up_success": {},
+    "sign_up_failed": "Sign up failed",
+    "@sign_up_failed": {}
 }

@@ -175,13 +175,38 @@ class _SignupViewState extends State<SignupView> {
                             ),
                             SizedBoxWidget.h32,
                             SignUpButtonWidget(
-                              onPressed: vm.isLoading
-                                  ? null
-                                  : () async {
-                                      if (_formKey.currentState!.validate()) {
-                                        vm.signUp(context);
-                                      }
-                                    },
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  );
+                                  vm.isSuccess = await vm.signUp();
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+
+                                  if (vm.isSuccess) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .sign_up_success),
+                                      backgroundColor: Colors.green,
+                                    ));
+                                  } else {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .sign_up_failed),
+                                      backgroundColor: Colors.red,
+                                    ));
+                                  }
+                                }
+                              },
                             )
                           ],
                         ),
