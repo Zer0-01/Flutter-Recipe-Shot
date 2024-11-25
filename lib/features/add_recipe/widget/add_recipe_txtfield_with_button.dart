@@ -20,7 +20,7 @@ class AddRecipeTxtfieldWithButton extends StatelessWidget {
     this.validator,
     this.controller,
     this.inputColor = AppColors.PURPLE_100,
-    this.fillColor = AppColors.WHITE,
+    this.fillColor = AppColors.BASE_WHITE,
     this.onPressed,
   });
 
@@ -69,7 +69,7 @@ class AddRecipeTxtfieldWithButton extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.PURPLE_50,
-                  foregroundColor: AppColors.WHITE,
+                  foregroundColor: AppColors.BASE_WHITE,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),

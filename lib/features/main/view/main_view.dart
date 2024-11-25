@@ -118,7 +118,7 @@ class _MainViewState extends State<MainView> {
             Navigator.pushNamed(context, AddRecipeView.id);
           },
           backgroundColor: AppColors.PURPLE_100,
-          foregroundColor: AppColors.WHITE,
+          foregroundColor: AppColors.BASE_WHITE,
           child: const Icon(Icons.add),
         ),
       ),

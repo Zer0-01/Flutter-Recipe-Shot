@@ -111,7 +111,7 @@ class _SigninViewState extends State<SigninView> {
                               flex: 3,
                               child: Container(
                                 height: 1,
-                                color: AppColors.WHITE,
+                                color: AppColors.BASE_WHITE,
                                 width: 200,
                               ),
                             ),
@@ -123,7 +123,7 @@ class _SigninViewState extends State<SigninView> {
                                 child: Text(
                                   AppLocalizations.of(context)!.sign_in_or,
                                   style: const TextStyle(
-                                      fontSize: 12, color: AppColors.WHITE),
+                                      fontSize: 12, color: AppColors.BASE_WHITE),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -132,7 +132,7 @@ class _SigninViewState extends State<SigninView> {
                               flex: 3,
                               child: Container(
                                 height: 1,
-                                color: AppColors.WHITE,
+                                color: AppColors.BASE_WHITE,
                                 width: 200,
                               ),
                             ),
@@ -149,7 +149,7 @@ class _SigninViewState extends State<SigninView> {
                               width: 50,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: AppColors.WHITE),
+                                border: Border.all(color: AppColors.BASE_WHITE),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
@@ -164,7 +164,7 @@ class _SigninViewState extends State<SigninView> {
                               width: 50,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: AppColors.WHITE),
+                                border: Border.all(color: AppColors.BASE_WHITE),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
@@ -179,7 +179,7 @@ class _SigninViewState extends State<SigninView> {
                               width: 50,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: AppColors.WHITE),
+                                border: Border.all(color: AppColors.BASE_WHITE),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),

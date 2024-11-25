@@ -19,8 +19,6 @@ class AppColors {
   static Color PURPLE_75 = const Color(0xFF7A1CAC);
   static const Color PURPLE_100 = Color(0xFF2E073F);
 
-  static const Color WHITE = Color(0xFFFFFFFF);
-
   static const Color BASE_BLACK = Color(0xFF000000);
   static const Color BASE_WHITE = Color(0xFFFFFFFF);
 }

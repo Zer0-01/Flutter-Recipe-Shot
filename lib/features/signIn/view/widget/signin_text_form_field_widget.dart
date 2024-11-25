@@ -23,24 +23,24 @@ class SigninTextFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: AppColors.WHITE,
+      cursorColor: AppColors.BASE_WHITE,
       controller: controller,
       obscureText: obscureText,
       style: const TextStyle(
-        color: AppColors.WHITE,
+        color: AppColors.BASE_WHITE,
         fontSize: 16,
       ),
       decoration: InputDecoration(
         labelText: hintText,
         labelStyle: const TextStyle(
-          color: AppColors.WHITE,
+          color: AppColors.BASE_WHITE,
         ),
         errorStyle: const TextStyle(
           color: Colors.red
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: AppColors.WHITE),
+          borderSide: const BorderSide(color: AppColors.BASE_WHITE),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -48,14 +48,14 @@ class SigninTextFormFieldWidget extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: AppColors.WHITE),
+          borderSide: const BorderSide(color: AppColors.BASE_WHITE),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(color: Colors.red),
         ),
         suffixIcon: IconButton(
-          color: AppColors.WHITE,
+          color: AppColors.BASE_WHITE,
           icon: Icon(trailingIcon),
           onPressed: onPressed,
         ),
