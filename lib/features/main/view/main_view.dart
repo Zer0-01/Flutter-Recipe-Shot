@@ -23,6 +23,7 @@ class _MainViewState extends State<MainView> {
   @override
   void initState() {
     super.initState();
+    vm.getUserName();
     vm.getRecipe();
   }
 
@@ -52,7 +53,7 @@ class _MainViewState extends State<MainView> {
               ),
             ),
           ),
-          title: Text(AppLocalizations.of(context)!.titleRecipeShot),
+          title: Text(vm.userName),
           actions: const [
             Padding(
               padding: EdgeInsets.all(8.0),

@@ -24,6 +24,10 @@ class SharedPreferencesHelper {
     return _prefs?.getString(key);
   }
 
+  String? getUserName(String key) {
+    return _prefs?.getString(key);
+  }
+
   // Remove a key
   Future<bool> remove(String key) async {
     return await _prefs?.remove(key) ?? false;
