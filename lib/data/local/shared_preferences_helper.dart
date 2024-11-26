@@ -16,6 +16,10 @@ class SharedPreferencesHelper {
     return await _prefs?.setString(key, value) ?? false;
   }
 
+  Future<bool> setUserName(String key, String value) async {
+    return await _prefs?.setString(key, value) ?? false;
+  }
+
   String? getUserUid(String key) {
     return _prefs?.getString(key);
   }

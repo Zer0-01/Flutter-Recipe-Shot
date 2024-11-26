@@ -98,7 +98,7 @@ class _SigninViewState extends State<SigninView> {
                               ? null
                               : () {
                                   if (_formKey.currentState!.validate()) {
-                                    vm.signIn(context);
+                                    vm.signIn();
                                   }
                                 },
                         ),

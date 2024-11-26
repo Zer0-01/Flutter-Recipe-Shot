@@ -34,7 +34,24 @@ class _MainViewState extends State<MainView> {
         backgroundColor: AppColors.PURPLE_25,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          leading: const Icon(Icons.person),
+          leading: Container(
+            width: 3,
+            height: 3,
+            decoration: BoxDecoration(
+              color: Colors.yellow,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Text(
+                'AZ',
+                style: TextStyle(
+                  color: Colors.black, // Text color
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12, // Adjust text size to fit the container
+                ),
+              ),
+            ),
+          ),
           title: Text(AppLocalizations.of(context)!.titleRecipeShot),
           actions: const [
             Padding(
