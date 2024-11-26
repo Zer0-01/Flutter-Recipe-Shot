@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
-import 'package:flutter_recipe_shot/features/add_recipe/view/add_recipe_view.dart';
-import 'package:flutter_recipe_shot/features/feed/view/feed_view.dart';
 import 'package:flutter_recipe_shot/features/main/view_model/main_view_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainView extends StatefulWidget {
   static const String id = 'main_view';
@@ -18,13 +14,12 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   MainViewModel vm = MainViewModel();
-  int _currentPageIndex = 0;
 
   @override
   void initState() {
     super.initState();
     vm.getUserName();
-    vm.getRecipe();
+    //vm.getRecipe();
   }
 
   @override
@@ -32,112 +27,59 @@ class _MainViewState extends State<MainView> {
     return ChangeNotifierProvider(
       create: (context) => vm,
       child: Scaffold(
-        backgroundColor: AppColors.PURPLE_25,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: Container(
-            width: 3,
-            height: 3,
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: Text(
-                'AZ',
-                style: TextStyle(
-                  color: Colors.black, // Text color
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12, // Adjust text size to fit the container
+        backgroundColor: AppColors.BASE_BLACK,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 24,
+                    ),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    Text(
+                      "Good Morning, ${vm.userName}!",
+                      style: const TextStyle(
+                          color: AppColors.BASE_WHITE,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
-              ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  child: const Column(
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 24,
+                          ),
+                          SizedBox(
+                            width: 11,
+                          ),
+                          Column(
+                            children: [
+                              Text("Anas"),
+                              Text("Hello"),
+                            ],
+                          )
+                        ],
+                      ),
+                      Text("Hello"),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-          title: Text(vm.userName),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(Icons.settings),
-            ),
-          ],
-        ),
-        bottomNavigationBar: NavigationBar(
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          onDestinationSelected: (index) {
-            setState(() {
-              _currentPageIndex = index;
-            });
-          },
-          selectedIndex: _currentPageIndex,
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(
-                Icons.home_outlined,
-              ),
-              selectedIcon: Icon(Icons.home_sharp, color: AppColors.PURPLE_100),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(
-                Icons.search_outlined,
-              ),
-              selectedIcon:
-                  Icon(Icons.search_sharp, color: AppColors.PURPLE_100),
-              label: 'Search',
-            ),
-            NavigationDestination(
-              icon: Icon(
-                Icons.notifications_outlined,
-              ),
-              selectedIcon:
-                  Icon(Icons.notifications_sharp, color: AppColors.PURPLE_100),
-              label: 'Notifications',
-            ),
-            NavigationDestination(
-              icon: Icon(
-                Icons.email_outlined,
-              ),
-              selectedIcon:
-                  Icon(Icons.email_sharp, color: AppColors.PURPLE_100),
-              label: 'Message',
-            ),
-          ],
-        ),
-        body: Consumer<MainViewModel>(
-          builder: (context, value, child) {
-            if (value.recipeResponse.status == ApiStatus.LOADING) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (value.recipeResponse.status == ApiStatus.ERROR) {
-              return Center(
-                child: Text(value.recipeResponse.message.toString()),
-              );
-            }
-            return <Widget>[
-              FeedView(
-                recipes: vm.recipeResponse.data ?? [],
-              ),
-              const Center(
-                child: Text('Search'),
-              ),
-              const Center(
-                child: Text('Notifications'),
-              ),
-              const Center(
-                child: Text('Message'),
-              ),
-            ][_currentPageIndex];
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, AddRecipeView.id);
-          },
-          backgroundColor: AppColors.PURPLE_100,
-          foregroundColor: AppColors.BASE_WHITE,
-          child: const Icon(Icons.add),
         ),
       ),
     );
