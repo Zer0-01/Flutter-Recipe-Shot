@@ -54,26 +54,71 @@ class _MainViewState extends State<MainView> {
                 ),
                 Card(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: const Column(
+                      borderRadius: BorderRadius.circular(32)),
+                  child: Column(
                     children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 24,
-                          ),
-                          SizedBox(
-                            width: 11,
-                          ),
-                          Column(
-                            children: [
-                              Text("Anas"),
-                              Text("Hello"),
-                            ],
-                          )
-                        ],
+                      const Padding(
+                        padding: EdgeInsets.only(
+                            left: 11.0, top: 16.0, right: 11.0),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 24,
+                            ),
+                            SizedBox(
+                              width: 11,
+                            ),
+                            Column(
+                              children: [
+                                Text("Anas"),
+                                Text("Hello"),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                      Text("Hello"),
+                      Image.network(
+                        'https://via.placeholder.com/400x190', // Replace with your image URL
+                        height: 190,
+                        fit: BoxFit
+                            .contain, // Ensures the image fits within the height
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 60.0, vertical: 12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Icon(Icons.favorite_border),
+                                SizedBox(
+                                  height: 6.0,
+                                ),
+                                Text("123")
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Icon(Icons.message_outlined),
+                                SizedBox(
+                                  height: 6.0,
+                                ),
+                                Text("123")
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Icon(Icons.share_outlined),
+                                SizedBox(
+                                  height: 6.0,
+                                ),
+                                Text("123")
+                              ],
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 )
