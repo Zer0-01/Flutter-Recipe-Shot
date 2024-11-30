@@ -57,9 +57,9 @@ class _MainViewState extends State<MainView> {
                       borderRadius: BorderRadius.circular(32)),
                   child: Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(
-                            left: 11.0, top: 16.0, right: 11.0),
+                       const Padding(
+                        padding:
+                            EdgeInsets.only(left: 11.0, top: 16.0, right: 11.0),
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -69,13 +69,36 @@ class _MainViewState extends State<MainView> {
                               width: 11,
                             ),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Anas"),
-                                Text("Hello"),
+                                Text(
+                                  "Anas",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),),
+                                Text("10 mins ago",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.BASE_GREY
+                                ),),
                               ],
                             )
                           ],
                         ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 11.0),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("Recipe Title")),
+                      ),
+                      const SizedBox(
+                        height: 12.0,
                       ),
                       Image.network(
                         'https://via.placeholder.com/400x190', // Replace with your image URL

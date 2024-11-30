@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/firebase/firestore_collections.dart';
 import 'package:flutter_recipe_shot/data/local/shared_preference_key.dart';
 import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
-import 'package:flutter_recipe_shot/models/user.dart';
+import 'package:flutter_recipe_shot/models/user/user.dart';
 
 class SigninViewModel extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
