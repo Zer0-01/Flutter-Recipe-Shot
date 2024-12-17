@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/main/view_model/main_view_model.dart';
+import 'package:flutter_recipe_shot/features/main/widgets/recipe_card_widget.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -92,91 +93,12 @@ class _MainViewState extends State<MainView> {
 
   // Widget to build a recipe card
   Widget _buildRecipeCard(Recipe recipe) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      margin: const EdgeInsets.only(bottom: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header with author and date
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Row(
-              children: [
-                const CircleAvatar(radius: 24),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      recipe.authorName,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      "${recipe.createdAt}",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: AppColors.BASE_GREY,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          // Title
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Text(
-              recipe.recipeTitle,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-          ),
-          const SizedBox(height: 10),
-          // Recipe Image
-          recipe.imageUrl != null && recipe.imageUrl!.isNotEmpty
-              ? Image.network(
-                  recipe.imageUrl!,
-                  height: 190,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                )
-              : Image.network(
-                  "https://via.placeholder.com/400x190",
-                  height: 190,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-          // Interaction Row
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    const Icon(Icons.favorite_border),
-                    Text(recipe.likes.toString()),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const Icon(Icons.comment_outlined),
-                    Text(recipe.comments.toString()),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const Icon(Icons.share_outlined),
-                    Text(recipe.shares.toString()),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+    return RecipeCardWidget(
+        authorName: recipe.authorName,
+        recipeCreatedAt: recipe.createdAt.toString(),
+        recipeTitle: recipe.recipeTitle,
+        likes: recipe.likes,
+        comments: recipe.comments,
+        shares: recipe.shares);
   }
 }
