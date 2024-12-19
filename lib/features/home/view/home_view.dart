@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/features/home/view_model/home_view_model.dart';
 import 'package:flutter_recipe_shot/features/home/widgets/recipe_card_widget.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
@@ -66,8 +67,15 @@ class _HomeViewState extends State<HomeView> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddRecipeView(),
+                ));
           },
+          backgroundColor: AppColors.BASE_WHITE,
+          foregroundColor: AppColors.BASE_BLACK,
+          child: const Icon(Icons.add),
         ),
       ),
     );
