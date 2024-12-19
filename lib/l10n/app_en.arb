@@ -39,5 +39,11 @@
     "sign_up_failed": "Sign up failed",
     "@sign_up_failed": {},
     "sign_up_sign_up": "Sign up",
-    "@sign_up_sign_up": {}
+    "@sign_up_sign_up": {},
+    "home_welcome_back": "Welcome back {name}",
+    "@home_welcome_back": {
+        "placeholders": {
+            "name": {}
+        }
+    }
 }

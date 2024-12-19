@@ -7,7 +7,7 @@ import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 
-class MainViewModel extends ChangeNotifier {
+class HomeViewModel extends ChangeNotifier {
   ApiResponse<List<Recipe>> recipeResponse = ApiResponse.loading();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   String _userName = "";

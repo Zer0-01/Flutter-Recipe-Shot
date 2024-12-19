@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
-import 'package:flutter_recipe_shot/features/main/view_model/main_view_model.dart';
+import 'package:flutter_recipe_shot/features/main/view_model/home_view_model.dart';
 import 'package:flutter_recipe_shot/features/main/widgets/recipe_card_widget.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MainView extends StatefulWidget {
+class HomeView extends StatefulWidget {
   static const String id = 'main_view';
 
-  const MainView({super.key});
+  const HomeView({super.key});
 
   @override
-  State<MainView> createState() => _MainViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _MainViewState extends State<MainView> {
-  MainViewModel vm = MainViewModel();
+class _HomeViewState extends State<HomeView> {
+  HomeViewModel vm = HomeViewModel();
 
   @override
   void initState() {
@@ -34,7 +35,7 @@ class _MainViewState extends State<MainView> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Consumer<MainViewModel>(
+            child: Consumer<HomeViewModel>(
               builder: (context, vm, child) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +45,8 @@ class _MainViewState extends State<MainView> {
                         const CircleAvatar(radius: 24),
                         const SizedBox(width: 6),
                         Text(
-                          "Good Morning, ${vm.userName}!",
+                          AppLocalizations.of(context)!
+                              .home_welcome_back(vm.userName),
                           style: const TextStyle(
                             color: AppColors.BASE_WHITE,
                             fontWeight: FontWeight.w500,
@@ -62,12 +64,17 @@ class _MainViewState extends State<MainView> {
             ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            
+          },
+        ),
       ),
     );
   }
 
   // Widget to build the recipe list with states
-  Widget _buildRecipeList(MainViewModel vm) {
+  Widget _buildRecipeList(HomeViewModel vm) {
     if (vm.recipeResponse.status == ApiStatus.LOADING) {
       return const Center(child: CircularProgressIndicator());
     } else if (vm.recipeResponse.status == ApiStatus.COMPLETED) {
