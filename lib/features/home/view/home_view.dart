@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
-import 'package:flutter_recipe_shot/features/main/view_model/home_view_model.dart';
-import 'package:flutter_recipe_shot/features/main/widgets/recipe_card_widget.dart';
+import 'package:flutter_recipe_shot/features/home/view_model/home_view_model.dart';
+import 'package:flutter_recipe_shot/features/home/widgets/recipe_card_widget.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
