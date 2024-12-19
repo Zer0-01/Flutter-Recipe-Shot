@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/features/add_recipe/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widgets/add_recipe_text_field_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 
@@ -10,6 +11,7 @@ class AddRecipeView extends StatefulWidget {
 }
 
 class _AddRecipeViewState extends State<AddRecipeView> {
+  AddRecipeViewModel vm = AddRecipeViewModel();
   @override
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
@@ -35,14 +37,23 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                     fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 38.0),
-              const AddRecipeTextFieldWidget(label: "Title", maxLines: 1),
+              AddRecipeTextFieldWidget(
+                  label: "Title", maxLines: 1, controller: vm.titleController),
               const SizedBox(height: 22.0),
-              const AddRecipeTextFieldWidget(label: "Description", maxLines: 2),
+              AddRecipeTextFieldWidget(
+                  label: "Description",
+                  maxLines: 2,
+                  controller: vm.descriptionController),
               const SizedBox(height: 22.0),
-              const AddRecipeTextFieldWidget(label: "Ingredients", maxLines: 3),
+              AddRecipeTextFieldWidget(
+                  label: "Ingredients",
+                  maxLines: 3,
+                  controller: vm.ingredientsController),
               const SizedBox(height: 22.0),
-              const AddRecipeTextFieldWidget(
-                  label: "Instructions", maxLines: 5),
+              AddRecipeTextFieldWidget(
+                  label: "Instructions",
+                  maxLines: 5,
+                  controller: vm.instructionsController),
               const SizedBox(height: 38.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

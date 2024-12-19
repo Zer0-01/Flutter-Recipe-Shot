@@ -4,8 +4,12 @@ import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 class AddRecipeTextFieldWidget extends StatelessWidget {
   final String label;
   final int maxLines;
+  final TextEditingController controller;
   const AddRecipeTextFieldWidget(
-      {super.key, required this.label, required this.maxLines});
+      {super.key,
+      required this.label,
+      required this.maxLines,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,7 @@ class AddRecipeTextFieldWidget extends StatelessWidget {
         ),
         const SizedBox(height: 6.0),
         TextField(
+          controller: controller,
           maxLines: maxLines,
           cursorColor: Colors.blue,
           style: const TextStyle(
