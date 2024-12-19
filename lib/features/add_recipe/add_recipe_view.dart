@@ -183,7 +183,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                 onPressed: () {
                   // Button action
                 },
-                child: const Text('Button Text'),
+                child: const Text('Submit'),
               ),
               const SizedBox(height: 48.0),
             ],
