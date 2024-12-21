@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
+import 'package:flutter_recipe_shot/models/add_recipe_model.dart';
 
 class AddRecipeViewModel extends ChangeNotifier {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -32,5 +34,30 @@ class AddRecipeViewModel extends ChangeNotifier {
   set instructionsController(TextEditingController value) {
     _instructionsController.text = value.text;
     notifyListeners();
+  }
+
+  ApiResponse<AddRecipeModel>? addRecipeResponse;
+
+  void _setAddRecipeResponse(ApiResponse<AddRecipeModel> response) {
+    print("Response: $response");
+    addRecipeResponse = response;
+    notifyListeners();
+  }
+
+  Future<void> addRecipe() async {
+    AddRecipeModel recipe = AddRecipeModel(
+      title: _titleController.text,
+      description: _descriptionController.text,
+      ingredients: _ingredientsController.text.split(','),
+      instructions: _instructionsController.text.split('.'),
+    );
+
+    try {
+      _setAddRecipeResponse(ApiResponse.loading());
+      await firestore.collection('recipes').add(recipe.toMap());
+      _setAddRecipeResponse(ApiResponse.completed(recipe));
+    } catch (e) {
+      _setAddRecipeResponse(ApiResponse.error(e.toString()));
+    }
   }
 }
