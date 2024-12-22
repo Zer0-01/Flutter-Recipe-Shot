@@ -3,6 +3,7 @@ import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/features/home/view_model/home_view_model.dart';
 import 'package:flutter_recipe_shot/features/home/widgets/recipe_card_widget.dart';
+import 'package:flutter_recipe_shot/features/settings/settings_view.dart';
 import 'package:flutter_recipe_shot/models/recipe.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -41,19 +42,29 @@ class _HomeViewState extends State<HomeView> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(radius: 24),
-                        const SizedBox(width: 6),
-                        Text(
-                          AppLocalizations.of(context)!
-                              .home_welcome_back(vm.userName),
-                          style: const TextStyle(
-                            color: AppColors.BASE_WHITE,
-                            fontWeight: FontWeight.w500,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SettingsView(),
+                            ));
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const CircleAvatar(radius: 24),
+                          const SizedBox(width: 6),
+                          Text(
+                            AppLocalizations.of(context)!
+                                .home_welcome_back(vm.userName),
+                            style: const TextStyle(
+                              color: AppColors.BASE_WHITE,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 24),
                     Expanded(
