@@ -60,6 +60,16 @@
     "@add_recipe_toast_success": {},
     "add_recipe_toast_error": "Error adding recipe",
     "@add_recipe_toast_error": {},
+    "settings_settings": "Settings",
+    "@settings_settings": {},
+    "settings_logout": "Logout",
+    "@settings_logout": {},
+    "settings_logout_confirmation": "Are you sure you want to logout?",
+    "@settings_logout_confirmation": {},
+    "settings_help": "Help",
+    "@settings_help": {},
     "general_submit": "Submit",
-    "@general_submit": {}
+    "@general_submit": {},
+    "general_cancel": "Cancel",
+    "@general_cancel": {}
 }

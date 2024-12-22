@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -23,9 +24,9 @@ class _SettingsViewState extends State<SettingsView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Settings",
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.settings_settings,
+              style: const TextStyle(
                 color: AppColors.BASE_WHITE,
                 fontSize: 26,
                 fontWeight: FontWeight.w500,
@@ -47,37 +48,43 @@ class _SettingsViewState extends State<SettingsView> {
                         barrierDismissible: false,
                         builder: (context) {
                           return AlertDialog(
-                          
                             backgroundColor: AppColors.BASE_WHITE,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            title: const Text("Logout", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                            content:
-                                const Text("Are you sure you want to logout?"),
+                            title: Text(
+                              AppLocalizations.of(context)!.settings_logout,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            content: Text(AppLocalizations.of(context)!
+                                .settings_logout_confirmation),
                             actions: [
                               TextButton(
                                 style: TextButton.styleFrom(
                                   foregroundColor: AppColors.BASE_BLACK,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
                                 ),
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: const Text("Cancel"),
+                                child: Text(AppLocalizations.of(context)!
+                                    .general_cancel),
                               ),
-                            
                               FilledButton(
                                 style: FilledButton.styleFrom(
                                   backgroundColor: AppColors.BASE_BLACK,
                                   foregroundColor: AppColors.BASE_WHITE,
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
                                 ),
                                 onPressed: () {
                                   Navigator.pop(context);
                                   Navigator.pop(context);
                                 },
-                                child: const Text("Logout"),
+                                child: Text(AppLocalizations.of(context)!
+                                    .settings_logout),
                               ),
                             ],
                           );
