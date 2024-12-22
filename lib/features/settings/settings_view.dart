@@ -40,28 +40,73 @@ class _SettingsViewState extends State<SettingsView> {
               ),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                          height: 25,
-                          width: 25,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.red),
-                          child: const Icon(
-                            size: 15,
-                            Icons.logout,
-                            color: AppColors.BASE_WHITE,
-                            fill: 0.7,
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text("Logout",
-                          style: TextStyle(
-                            color: AppColors.BASE_WHITE,
-                            fontSize: 16,
-                          ))
-                    ],
+                  InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) {
+                          return AlertDialog(
+                          
+                            backgroundColor: AppColors.BASE_WHITE,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            title: const Text("Logout", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                            content:
+                                const Text("Are you sure you want to logout?"),
+                            actions: [
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  foregroundColor: AppColors.BASE_BLACK,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Cancel"),
+                              ),
+                            
+                              FilledButton(
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: AppColors.BASE_BLACK,
+                                  foregroundColor: AppColors.BASE_WHITE,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Logout"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                            height: 25,
+                            width: 25,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.red),
+                            child: const Icon(
+                              size: 15,
+                              Icons.logout,
+                              color: AppColors.BASE_WHITE,
+                              fill: 0.7,
+                            )),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text("Logout",
+                            style: TextStyle(
+                              color: AppColors.BASE_WHITE,
+                              fontSize: 16,
+                            ))
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 5),
                   const Divider(),
