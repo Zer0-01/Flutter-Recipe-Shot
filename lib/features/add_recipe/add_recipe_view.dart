@@ -3,6 +3,7 @@ import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widgets/add_recipe_text_field_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class AddRecipeView extends StatefulWidget {
@@ -80,11 +81,38 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                       onPressed:
                           vm.addRecipeResponse?.status == ApiStatus.LOADING
                               ? null
-                              : () {
-                                  vm.addRecipe();
+                              : () async {
+                                  await vm.addRecipe();
+                                  if (vm.addRecipeResponse?.status ==
+                                      ApiStatus.COMPLETED) {
+                                    Fluttertoast.showToast(
+                                      msg: "Recipe added successfully",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.green,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                    Navigator.pop(context);
+                                  } else if (vm.addRecipeResponse?.status ==
+                                      ApiStatus.ERROR) {
+                                    Fluttertoast.showToast(
+                                      msg: vm.addRecipeResponse?.message ??
+                                          "Something went wrong",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0,
+                                    );
+                                  }
                                 },
                       child: vm.addRecipeResponse?.status == ApiStatus.LOADING
-                          ? const CircularProgressIndicator(color: AppColors.BASE_BLACK,)
+                          ? const CircularProgressIndicator(
+                              color: AppColors.BASE_BLACK,
+                            )
                           : const Text('Submit'),
                     ),
                     const SizedBox(height: 48.0),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
+import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/models/add_recipe_model.dart';
 
 class AddRecipeViewModel extends ChangeNotifier {
@@ -54,9 +55,15 @@ class AddRecipeViewModel extends ChangeNotifier {
 
     try {
       _setAddRecipeResponse(ApiResponse.loading());
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       await firestore.collection('recipes').add(recipe.toMap());
       _setAddRecipeResponse(ApiResponse.completed(recipe));
+      if (addRecipeResponse?.status == ApiStatus.COMPLETED) {
+        _titleController.clear();
+        _descriptionController.clear();
+        _ingredientsController.clear();
+        _instructionsController.clear();
+      }
     } catch (e) {
       _setAddRecipeResponse(ApiResponse.error(e.toString()));
     }
