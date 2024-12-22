@@ -48,12 +48,13 @@ class AddRecipeViewModel extends ChangeNotifier {
     AddRecipeModel recipe = AddRecipeModel(
       title: _titleController.text,
       description: _descriptionController.text,
-      ingredients: _ingredientsController.text.split(','),
-      instructions: _instructionsController.text.split('.'),
+      ingredients: _ingredientsController.text,
+      instructions: _instructionsController.text,
     );
 
     try {
       _setAddRecipeResponse(ApiResponse.loading());
+      await Future.delayed(Duration(seconds: 2));
       await firestore.collection('recipes').add(recipe.toMap());
       _setAddRecipeResponse(ApiResponse.completed(recipe));
     } catch (e) {

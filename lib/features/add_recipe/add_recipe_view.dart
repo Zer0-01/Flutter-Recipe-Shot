@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/add_recipe_view_model.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/widgets/add_recipe_text_field_widget.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
@@ -26,7 +27,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
       body: ChangeNotifierProvider(
         create: (context) => vm,
         child: Consumer<AddRecipeViewModel>(
-          builder: (context, value, child) {
+          builder: (context, vm, child) {
             return SafeArea(
                 child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -66,6 +67,7 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.black,
+                        disabledBackgroundColor: AppColors.BASE_GREY,
                         textStyle: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w600,
@@ -75,8 +77,15 @@ class _AddRecipeViewState extends State<AddRecipeView> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      onPressed: () {},
-                      child: const Text('Submit'),
+                      onPressed:
+                          vm.addRecipeResponse?.status == ApiStatus.LOADING
+                              ? null
+                              : () {
+                                  vm.addRecipe();
+                                },
+                      child: vm.addRecipeResponse?.status == ApiStatus.LOADING
+                          ? const CircularProgressIndicator(color: AppColors.BASE_BLACK,)
+                          : const Text('Submit'),
                     ),
                     const SizedBox(height: 48.0),
                   ],

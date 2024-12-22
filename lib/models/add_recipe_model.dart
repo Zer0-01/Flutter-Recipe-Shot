@@ -1,9 +1,9 @@
 class AddRecipeModel {
-  String? id; 
+  String? id;
   String title;
   String description;
-  List<String> ingredients; 
-  List<String> instructions; 
+  String ingredients;
+  String instructions;
 
   AddRecipeModel({
     this.id,
@@ -18,8 +18,8 @@ class AddRecipeModel {
       'id': id,
       'title': title,
       'description': description,
-      'ingredients': ingredients.join(', '), 
-      'instructions': instructions.join('. '), 
+      'ingredients': ingredients,
+      'instructions': instructions,
     };
   }
 
@@ -28,10 +28,8 @@ class AddRecipeModel {
       id: map['id'],
       title: map['title'],
       description: map['description'],
-      ingredients:
-          (map['ingredients'] as String).split(', '), 
-      instructions:
-          (map['instructions'] as String).split('. '), 
+      ingredients: map['ingredients'],
+      instructions: map['instructions'],
     );
   }
 }
