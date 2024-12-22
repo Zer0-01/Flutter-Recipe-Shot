@@ -45,5 +45,21 @@
         "placeholders": {
             "name": {}
         }
-    }
+    },
+    "add_recipe_add_recipe": "Add recipe",
+    "@add_recipe_add_recipe": {},
+    "add_recipe_title": "Title",
+    "@add_recipe_title": {},
+    "add_recipe_description": "Description",
+    "@add_recipe_description": {},
+    "add_recipe_ingredients": "Ingredients",
+    "@add_recipe_ingredients": {},
+    "add_recipe_instructions": "Instructions",
+    "@add_recipe_instructions": {},
+    "add_recipe_toast_success": "Recipe added successfully",
+    "@add_recipe_toast_success": {},
+    "add_recipe_toast_error": "Error adding recipe",
+    "@add_recipe_toast_error": {},
+    "general_submit": "Submit",
+    "@general_submit": {}
 }
