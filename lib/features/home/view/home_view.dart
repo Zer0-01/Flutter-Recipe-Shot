@@ -87,7 +87,22 @@ class _HomeViewState extends State<HomeView> {
                                     vm.recipeResponse.data![index];
                                 String title = recipe.title;
                                 return Card(
-                                  child: Text(title),
+                                  margin: const EdgeInsets.only(bottom: 20.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          title,
+                                          style: const TextStyle(
+                                            fontSize: 14.0,
+                                          ),
+                                        ),
+                                        const Icon(Icons.keyboard_arrow_right)
+                                      ],
+                                    ),
+                                  ),
                                 );
                               },
                             );
