@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/features/home/view_model/home_view_model.dart';
-import 'package:flutter_recipe_shot/features/home/widgets/recipe_card_widget.dart';
 import 'package:flutter_recipe_shot/features/settings/settings_view.dart';
-import 'package:flutter_recipe_shot/models/recipe.dart';
+import 'package:flutter_recipe_shot/models/recipe_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -67,8 +66,35 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    Expanded(
-                      child: _buildRecipeList(vm),
+                    Consumer<HomeViewModel>(
+                      builder: (context, vm, child) {
+                        switch (vm.recipeResponse.status) {
+                          case ApiStatus.LOADING:
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          case ApiStatus.ERROR:
+                            return Center(
+                                child: Text(
+                              vm.recipeResponse.message!,
+                            ));
+                          case ApiStatus.COMPLETED:
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: vm.recipeResponse.data!.length,
+                              itemBuilder: (context, index) {
+                                RecipeModel recipe =
+                                    vm.recipeResponse.data![index];
+                                String title = recipe.title;
+                                return Card(
+                                  child: Text(title),
+                                );
+                              },
+                            );
+                          default:
+                            return Container();
+                        }
+                      },
                     ),
                   ],
                 );
@@ -90,41 +116,5 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
-  }
-
-  // Widget to build the recipe list with states
-  Widget _buildRecipeList(HomeViewModel vm) {
-    if (vm.recipeResponse.status == ApiStatus.LOADING) {
-      return const Center(child: CircularProgressIndicator());
-    } else if (vm.recipeResponse.status == ApiStatus.COMPLETED) {
-      List<Recipe> recipes = vm.recipeResponse.data!;
-      return ListView.builder(
-        itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          final recipe = recipes[index];
-          return _buildRecipeCard(recipe);
-        },
-      );
-    } else if (vm.recipeResponse.status == ApiStatus.ERROR) {
-      return Center(
-        child: Text(
-          "Error: ${vm.recipeResponse.message}",
-          style: const TextStyle(color: Colors.red),
-        ),
-      );
-    } else {
-      return const Center(child: Text("No data available."));
-    }
-  }
-
-  // Widget to build a recipe card
-  Widget _buildRecipeCard(Recipe recipe) {
-    return RecipeCardWidget(
-        authorName: recipe.authorName,
-        recipeCreatedAt: recipe.createdAt.toString(),
-        recipeTitle: recipe.recipeTitle,
-        likes: recipe.likes,
-        comments: recipe.comments,
-        shares: recipe.shares);
   }
 }

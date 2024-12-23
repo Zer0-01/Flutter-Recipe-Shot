@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/local/shared_preference_key.dart';
 import 'package:flutter_recipe_shot/data/local/shared_preferences_helper.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_response.dart';
-import 'package:flutter_recipe_shot/models/recipe.dart';
+import 'package:flutter_recipe_shot/models/recipe_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  ApiResponse<List<Recipe>> recipeResponse = ApiResponse.loading();
+  ApiResponse<List<RecipeModel>> recipeResponse = ApiResponse.loading();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   String _userName = "";
 
@@ -21,7 +21,7 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _setRecipeResponse(ApiResponse<List<Recipe>> response) {
+  void _setRecipeResponse(ApiResponse<List<RecipeModel>> response) {
     log('Response: $response');
     recipeResponse = response;
     notifyListeners();
@@ -33,8 +33,8 @@ class HomeViewModel extends ChangeNotifier {
 
       CollectionReference recipeCollection = firestore.collection('recipes');
       QuerySnapshot snapshot = await recipeCollection.get();
-      List<Recipe> value = snapshot.docs
-          .map((doc) => Recipe.fromJson(doc.data() as Map<String, dynamic>))
+      List<RecipeModel> value = snapshot.docs
+          .map((doc) => RecipeModel.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
 
       _setRecipeResponse(ApiResponse.completed(value));
