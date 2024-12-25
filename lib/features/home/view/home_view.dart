@@ -95,7 +95,9 @@ class _HomeViewState extends State<HomeView> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  const RecipeDetailsView(),
+                                                  RecipeDetailsView(
+                                                recipeModel: recipe,
+                                              ),
                                             ));
                                       },
                                       child: Card(
