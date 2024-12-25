@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/data/remote/response/api_status.dart';
 import 'package:flutter_recipe_shot/features/add_recipe/add_recipe_view.dart';
 import 'package:flutter_recipe_shot/features/home/view_model/home_view_model.dart';
+import 'package:flutter_recipe_shot/features/recipe_details/recipe_details_view.dart';
 import 'package:flutter_recipe_shot/features/settings/settings_view.dart';
 import 'package:flutter_recipe_shot/models/recipe_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
@@ -86,23 +87,39 @@ class _HomeViewState extends State<HomeView> {
                                 RecipeModel recipe =
                                     vm.recipeResponse.data![index];
                                 String title = recipe.title;
-                                return Card(
-                                  margin: const EdgeInsets.only(bottom: 20.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          title,
-                                          style: const TextStyle(
-                                            fontSize: 14.0,
+                                return Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const RecipeDetailsView(),
+                                            ));
+                                      },
+                                      child: Card(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                title,
+                                                style: const TextStyle(
+                                                  fontSize: 14.0,
+                                                ),
+                                              ),
+                                              const Icon(
+                                                  Icons.keyboard_arrow_right)
+                                            ],
                                           ),
                                         ),
-                                        const Icon(Icons.keyboard_arrow_right)
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                    const SizedBox(height: 20),
+                                  ],
                                 );
                               },
                             );
