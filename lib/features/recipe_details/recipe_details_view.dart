@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_recipe_shot/models/recipe_model.dart';
 import 'package:flutter_recipe_shot/res/colors/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RecipeDetailsView extends StatefulWidget {
   final RecipeModel recipeModel;
@@ -40,29 +41,29 @@ class _RecipeDetailsViewState extends State<RecipeDetailsView> {
                 length: 3,
                 child: Column(
                   children: [
-                    const TabBar(
-                      indicator: BoxDecoration(),
+                    TabBar(
+                      indicator: const BoxDecoration(),
                       dividerColor: Colors.transparent,
                       isScrollable: true,
                       indicatorColor: AppColors.BASE_BLACK,
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                           color: AppColors.BASE_BLACK,
                           fontSize: 20,
                           fontWeight: FontWeight.w500),
-                      unselectedLabelStyle: TextStyle(
+                      unselectedLabelStyle: const TextStyle(
                           color: AppColors.BASE_BLACK,
                           fontSize: 20,
                           fontWeight: FontWeight.normal),
                       tabs: [
                         Tab(
-                          text: "Description",
-                        ),
+                            text: AppLocalizations.of(context)!
+                                .recipe_details_description),
                         Tab(
-                          text: "Ingredients",
-                        ),
+                            text: AppLocalizations.of(context)!
+                                .recipe_details_ingredients),
                         Tab(
-                          text: "Instructions",
-                        ),
+                            text: AppLocalizations.of(context)!
+                                .recipe_details_instructions),
                       ],
                     ),
                     const SizedBox(height: 47),
